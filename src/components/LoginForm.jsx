@@ -15,9 +15,13 @@ const LoginForm = ({ t }) => {
     if (canLogin) {
       localStorage.setItem("username", JSON.stringify(username));
       localStorage.setItem("password", JSON.stringify(password));
-      navigate("/dashboard");
       setShowAlert(true);
     }
+  };
+
+  const handleAgreeAndContinue = () => {
+    setShowAlert(false);
+    navigate("/dashboard");
   };
 
   return (
@@ -115,17 +119,18 @@ const LoginForm = ({ t }) => {
 
       {/* Alert Popup */}
       {showAlert && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50">
           <div className="bg-white p-6 rounded shadow-md max-w-md w-full text-center">
             <p className="text-sm text-gray-800">
               If you think you or someone you care for is having a medical or
-              mental health emergency, call 911 or go to the nearest hospital.
-              Do not attempt to access emergency care through this website.
+              mental <br />
+              health emergency, call 911 or go to the nearest hospital. Do not
+              attempt to access emergency care through this website.
             </p>
             <div className="flex justify-center gap-4 mt-6">
               <button
                 className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-                onClick={() => handleLogin} // You can navigate from here
+                onClick={handleAgreeAndContinue}
               >
                 Agree and Continue
               </button>
