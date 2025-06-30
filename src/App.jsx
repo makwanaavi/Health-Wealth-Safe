@@ -1,29 +1,31 @@
-import "./App.css";
-import LoginPage from "./components/ui/LoginPage";
-
-function App() {
-  return (
-    <>
-      <LoginPage />
-    </>
-  );
-}
-
-export default App;
-
-// import { BrowserRouter, Routes, Route } from "react-router-dom";
-// import LoginForm from "./components/LoginForm";
-// // import Dashboard from "./components/Dashboard";
+// import "./App.css";
+// import LoginPage from "./components/ui/LoginPage";
 
 // function App() {
 //   return (
-//     <BrowserRouter>
-//       <Routes>
-//         {/* <Route path="/" element={<LoginForm />} /> */}
-//         {/* <Route path="/ " element={<Dashboard />} /> */}
-//       </Routes>
-//     </BrowserRouter>
+//     <>
+//       <LoginPage />
+//     </>
 //   );
 // }
 
 // export default App;
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import SignUp from './components/ui/SignUp';
+import Dashboard from './components/ui/Dashboard';
+import LoginPage from "./components/ui/LoginPage";
+
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={< LoginPage/>} />
+        <Route path="/sign-up" element={<SignUp />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+      </Routes>
+    </Router>
+  );
+}
+
+export default App;

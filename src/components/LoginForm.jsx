@@ -1,18 +1,20 @@
 import { useState } from "react";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
+import { Link, useNavigate } from "react-router-dom";
 
 const LoginForm = ({ t }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showAlert, setShowAlert] = useState(false);
-
+  const navigate = useNavigate();
   const canLogin = username && password;
 
   const handleLogin = (e) => {
     e.preventDefault();
     if (canLogin) {
-      setShowAlert(true); // Show popup after login
+      navigate("/dashboard");
+      setShowAlert(true);
     }
   };
 
@@ -58,9 +60,18 @@ const LoginForm = ({ t }) => {
         >
           {t.login}
         </button>
-        <button className="py-2 bg-blue-500 w-30 text-white rounded hover:bg-blue-600 px-3 text-sm">
+        {/* <button
+        type="submit"
+         className="py-2 bg-blue-500 w-30 text-white rounded hover:bg-blue-600 px-3 text-sm">
+          <Link href="/sign-up">{t.signup}</Link>
+        </button> */}
+        <Link
+          to="/sign-up"
+          type="submit"
+          className="py-2 bg-blue-500 w-30 text-center text-white rounded hover:bg-blue-600 px-3 text-sm"
+        >
           {t.signup}
-        </button>
+        </Link>
       </div>
 
       <p className="text-sm text-start">
@@ -116,7 +127,7 @@ const LoginForm = ({ t }) => {
             <div className="flex justify-center gap-4 mt-6">
               <button
                 className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-                onClick={() => <Link href="/dashboard">DashBoard</Link>} // You can navigate from here
+                onClick={() => handleLogin} // You can navigate from here
               >
                 Agree and Continue
               </button>
