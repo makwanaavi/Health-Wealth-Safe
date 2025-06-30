@@ -1,6 +1,7 @@
 import { IoCall } from "react-icons/io5";
 import { TbMessage2Filled } from "react-icons/tb";
 import FooterInfo from "./FooterInfo";
+import { MdEmail } from "react-icons/md";
 
 const LeftBanner = ({ t }) => (
   <div className="relative hidden w-400 md:block overflow-hidden">
@@ -27,7 +28,7 @@ const LeftBanner = ({ t }) => (
         {t.call} +1 (877) 581-8810 <span>{t.available}</span>
       </div>
       <div className="flex items-center gap-2 font-medium bg-blue-100 rounded-full px-3 py-1 text-blue-500 text-sm hover:text-white hover:bg-[#0056D2]">
-        <TbMessage2Filled className="w-5 h-5" /> {t.info}
+        <MdEmail className="w-5 h-5" /> {t.info}
       </div>
     </div>
     <FooterInfo t={t} />

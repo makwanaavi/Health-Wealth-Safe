@@ -2,7 +2,13 @@ import { IoEarth } from "react-icons/io5";
 import { HiLanguage } from "react-icons/hi2";
 import { RiEnglishInput } from "react-icons/ri";
 
-const LanguageSelector = ({ language, setLanguage, open, setOpen, translations }) => {
+const LanguageSelector = ({
+  language,
+  setLanguage,
+  open,
+  setOpen,
+  translations,
+}) => {
   const handleLanguageSelect = (lang) => {
     setOpen(false);
     setLanguage(lang);
