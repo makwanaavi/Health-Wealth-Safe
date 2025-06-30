@@ -4,7 +4,6 @@ import LeftBanner from "../LeftBanner";
 import LanguageSelector from "../LanguageSelector";
 import LoginForm from "../LoginForm";
 
-
 const LoginPage = () => {
   const [open, setOpen] = useState(false);
   const [language, setLanguage] = useState("en");
@@ -23,10 +22,10 @@ const LoginPage = () => {
         />
         <div className="flex flex-1 items-center justify-center px-4 py-8 md:py-0">
           <div className="w-full max-w-md">
-            <div className="flex justify-center mb-4">
-              <img src="/logo_latest.png" alt="Logo" className="w-32 md:w-44" />
+            <div className="flex justify-center m-2">
+              <img src="/logo_latest.png" alt="Logo" className="w-28 md:w-40" />
             </div>
-            <h2 className="text-center text-gray-700 font-semibold mb-6 text-lg md:text-2xl">
+            <h2 className="text-center text-gray-400 font-normal mb-6 text-xs md:text-base">
               {t.signIn}
             </h2>
             <LoginForm t={t} />

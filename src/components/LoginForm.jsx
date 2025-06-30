@@ -7,7 +7,7 @@ const LoginForm = ({ t }) => {
   return (
     <form className="w-full max-w-md mx-auto space-y-4">
       <input
-        type="text" 
+        type="text"
         placeholder={t.username}
         className="w-full rounded focus:outline-none"
       />
@@ -32,14 +32,18 @@ const LoginForm = ({ t }) => {
           {t.forgot}
         </a>
       </div>
-      <div className="flex gap-3 w-50 justify-between items-center">
-        <button className="w-full py-2 bg-gray-300 text-white rounded" disabled>
+      <div className="flex gap-30  justify-between items-center mx-20 mt-10">
+        <button
+          className="py-2 bg-gray-300 w-30  text-white rounded px-3 text-sm"
+          disabled
+        >
           {t.login}
         </button>
-        <button className="w-full py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+        <button className="py-2 bg-blue-500 w-30 text-white rounded hover:bg-blue-600 px-3 text-sm">
           {t.signup}
         </button>
       </div>
+
       <p className="text-sm text-start">
         {t.dontHave}{" "}
         <a href="#" className="text-blue-600 hover:underline">
@@ -50,14 +54,22 @@ const LoginForm = ({ t }) => {
         <a href="#">{t.manageData}</a>
       </p>
       <div className="flex items-center mb-10">
-        <img src="/appstore.png" alt="App Store" className="h-40 w-125 cursor-pointer" />
-        <img src="/googleplay.png" alt="Google Play" className="h-30 w-125 cursor-pointer" />
+        <img
+          src="/appstore.png"
+          alt="App Store"
+          className="h-40 w-125 cursor-pointer"
+        />
+        <img
+          src="/googleplay.png"
+          alt="Google Play"
+          className="h-30 w-125 cursor-pointer"
+        />
       </div>
       <p className="text-xs text-center text-gray-500 mt-6">
         {t.copyright}
         <br />
-        <br />  
-        <br />  
+        <br />
+        <br />
         {t.version}
       </p>
     </form>

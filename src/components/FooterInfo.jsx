@@ -1,5 +1,5 @@
 const FooterInfo = ({ t }) => (
-  <div className="w-full flex flex-col items-center pb-4 mt-auto">
+  <div className="absolute bottom-10 right-10 flex gap-12">
     <span className="text-xs text-gray-500 mb-1">
       {t.address} <a href="#" className="text-blue-500 underline">{t.athens}</a>, {t.unitedStates}
     </span>
