@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 import { Link, useNavigate } from "react-router-dom";
+import LoadingScreen from "./LoadingScreen";
 
 const LoginForm = ({ t }) => {
   const [showPassword, setShowPassword] = useState(false);
@@ -21,7 +22,9 @@ const LoginForm = ({ t }) => {
 
   const handleAgreeAndContinue = () => {
     setShowAlert(false);
-    navigate("/dashboard");
+    setTimeout(() => {
+      navigate("/dashboard");
+    }, 3000);
   };
 
   return (
