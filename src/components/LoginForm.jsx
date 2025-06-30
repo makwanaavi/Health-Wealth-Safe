@@ -1,8 +1,13 @@
 import { useState } from "react";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
+import { FiLogIn } from "react-icons/fi"; // Import login icon
 
 const LoginForm = ({ t }) => {
   const [showPassword, setShowPassword] = useState(false);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const canLogin = username && password;
 
   return (
     <form className="w-full max-w-md mx-auto space-y-4">
@@ -10,6 +15,8 @@ const LoginForm = ({ t }) => {
         type="text"
         placeholder={t.username}
         className="w-full rounded focus:outline-none"
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
       />
       <hr />
       <div className="relative">
@@ -17,6 +24,8 @@ const LoginForm = ({ t }) => {
           type={showPassword ? "text" : "password"}
           placeholder={t.password}
           className="w-full rounded focus:outline-none"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
         />
         <button
           type="button"
@@ -34,8 +43,10 @@ const LoginForm = ({ t }) => {
       </div>
       <div className="flex gap-30  justify-between items-center mx-20 mt-10">
         <button
-          className="py-2 bg-gray-300 w-30  text-white rounded px-3 text-sm"
-          disabled
+          className={`py-2 w-30 text-white rounded px-3 text-sm flex items-center justify-center gap-2 ${
+            canLogin ? "bg-blue-500 hover:bg-blue-600" : "bg-gray-300"
+          }`}
+          disabled={!canLogin}
         >
           {t.login}
         </button>
