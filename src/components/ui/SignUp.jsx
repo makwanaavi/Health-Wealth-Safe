@@ -66,6 +66,7 @@ const SignUp = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (isFormValid()) {
+      localStorage.setItem("signupData", JSON.stringify({ ...formData, ...agreements }));
       // In a real app, you would send data to your backend here
       navigate("/dashboard");
     }
@@ -79,7 +80,6 @@ const SignUp = () => {
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
-        // Add blue overlay
       }}
     >
       <div className="absolute inset-0 bg-gradient-to-br from-blue-100 via-blue-500 to-blue-400 opacity-70 backdrop-blur-sm z-0"></div>
@@ -223,4 +223,3 @@ const SignUp = () => {
 };
 
 export default SignUp;
-          
