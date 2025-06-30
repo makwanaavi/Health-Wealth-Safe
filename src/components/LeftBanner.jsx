@@ -4,7 +4,7 @@ import FooterInfo from "./FooterInfo";
 import { MdEmail } from "react-icons/md";
 
 const LeftBanner = ({ t }) => (
-  <div className="relative hidden w-400 md:block overflow-hidden">
+  <div className="relative hidden w-450 md:block overflow-hidden">
     <img
       src="/loginImage.png"
       alt="Banner"
@@ -22,7 +22,7 @@ const LeftBanner = ({ t }) => (
         {t.readMore}
       </a>
     </div>
-    <div className="absolute top-6 right-0 flex gap-6 bg-white mr-6">
+    <div className="absolute top-6 right-0 flex gap-6 bg-white mr-14">
       <div className="flex items-center gap-2 px-6 font-medium py-2.5 bg-blue-100 rounded-full text-blue-500 text-sm hover:text-white hover:bg-[#0056D2]">
         <IoCall className="w-5 h-5" />
         {t.call} +1 (877) 581-8810 <span>{t.available}</span>

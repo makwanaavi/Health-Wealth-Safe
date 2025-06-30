@@ -20,7 +20,7 @@ export default App;
 //     <BrowserRouter>
 //       <Routes>
 //         {/* <Route path="/" element={<LoginForm />} /> */}
-//         {/* <Route path="/dashboard" element={<Dashboard />} /> */}
+//         {/* <Route path="/ " element={<Dashboard />} /> */}
 //       </Routes>
 //     </BrowserRouter>
 //   );
