@@ -35,7 +35,7 @@ const LoginForm = ({ t }) => {
         } else {
           setError(data.message || "Login failed");
         }
-      // eslint-disable-next-line no-unused-vars
+        // eslint-disable-next-line no-unused-vars
       } catch (err) {
         setError("Network error");
       } finally {
@@ -43,7 +43,6 @@ const LoginForm = ({ t }) => {
       }
     }
   };
-
   const handleAgreeAndContinue = () => {
     setShowAlert(false);
     navigate("/dashboard");
