@@ -89,14 +89,18 @@ const Header = () => {
             {user.firstName || user.lastName
               ? `${user.firstName} ${user.lastName}`.trim()
               : "User"}
-            
           </div>
           <div className="text-gray-600 flex gap-2">
             <span className="flex">
-            <a className="flex gap-1 items-center"><MdAddIcCall/> {user.phone ? user.phone : "(---) --- ----"}</a>
+              <a className="flex gap-1 items-center">
+                <MdAddIcCall /> {user.phone ? user.phone : "(---) --- ----"}
+              </a>
             </span>
             <span className="flex">
-             <a className="flex gap-1 items-center"> <IoMdMail /> {user.email || "user@email.com"}</a>
+              <a className="flex gap-1 items-center">
+                {" "}
+                <IoMdMail /> {user.email || "user@email.com"}
+              </a>
             </span>
           </div>
           <div className="text-gray-600 mt-1 flex-wrap">
