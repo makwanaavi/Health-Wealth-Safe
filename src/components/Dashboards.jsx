@@ -17,7 +17,7 @@ const data = [
   { date: "2025-07-01", score: 4 },
 ];
 
-const ResizableFeelingCard = () => {
+const Dashboards = () => {
   return (
               
     <div style={{minHeight: 1200,} }>
@@ -161,4 +161,4 @@ const ResizableFeelingCard = () => {
   );
 };
 
-export default ResizableFeelingCard;
+export default Dashboards;
