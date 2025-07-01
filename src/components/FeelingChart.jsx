@@ -1,4 +1,3 @@
-import React from "react";
 import { Rnd } from "react-rnd";
 import {
   LineChart,
@@ -20,53 +19,8 @@ const data = [
 
 const ResizableFeelingCard = () => {
   return (
-    <div>
-      <Rnd
-        default={{
-          x: 0,
-          y: 0,
-          width: 800,
-          height: 450,
-        }}
-        minWidth={300}
-        minHeight={300}
-        dragHandleClassName="drag-header"
-        className="rounded-lg shadow-md bg-white border border-gray-200"
-        dragAxis="both"
-        style={{ zIndex: 10 }}
-        disableDragging={false}
-      >
-        <div className="h-full w-full p-4 overflow-hidden">
-          {/* Header - draggable */}
-          <div className="drag-header bg-blue-50 text-blue-600 p-2 font-medium rounded-md mb-2 cursor-move">
-            Q2: How many hours of sleep did you get?
-          </div>
-
-          {/* Chart */}
-          <ResponsiveContainer width="100%" height="80%">
-            <LineChart data={data}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis
-                dataKey="date"
-                tickFormatter={(date) =>
-                  new Date(date).toLocaleDateString("en-US", {
-                    month: "short",
-                    day: "numeric",
-                  })
-                }
-              />
-              <YAxis domain={[1, 10]} />
-              <Tooltip />
-              <Line
-                type="monotone"
-                dataKey="score"
-                stroke="#007bff"
-                dot={{ r: 4 }}
-              />
-            </LineChart>
-          </ResponsiveContainer>
-        </div>
-      </Rnd>
+              
+    <div style={{minHeight: 1200,} }>
       <Rnd
         default={{
           x: 0,
@@ -74,17 +28,15 @@ const ResizableFeelingCard = () => {
           width: 1000,
           height: 550,
         }}
-        minWidth={300}
-        minHeight={300}
         dragHandleClassName="drag-header"
         className="rounded-lg shadow-md bg-white border border-gray-200"
         dragAxis="both"
         style={{ zIndex: 10 }}
         disableDragging={false}
       >
-        <div className="h-full w-full p-4 overflow-hidden">
+        <div className="h-full  w-full p-4 overflow-hidden">
           {/* Header - draggable */}
-          <div className="drag-header bg-blue-50 text-blue-600 p-2 font-medium rounded-md mb-2 cursor-move">
+          <div className=" bg-blue-50 drag-header text-blue-600 p-2 font-medium rounded-md mb-2 cursor-move">
             Q1: How many ounces of water have you had to drink today?
           </div>
 
@@ -117,11 +69,54 @@ const ResizableFeelingCard = () => {
         default={{
           x: 0,
           y: 0,
+          width: 800,
+          height: 450,
+        }}
+        dragHandleClassName="drag-header"
+        className="rounded-lg shadow-md bg-white border border-gray-200"
+        dragAxis="both"
+        style={{ zIndex: 10 }}
+        disableDragging={false}
+      >
+        <div className="h-full w-full p-4 sm:block">
+          {/* Header - draggable */}
+          <div className="drag-header bg-blue-50 text-blue-600 p-2  font-medium rounded-md mb-2 cursor-move">
+            Q2: How many hours of sleep did you get?
+          </div>
+
+          {/* Chart */}
+          <ResponsiveContainer width="100%" height="80%">
+            <LineChart data={data}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis
+                dataKey="date"
+                tickFormatter={(date) =>
+                  new Date(date).toLocaleDateString("en-US", {
+                    month: "short",
+                    day: "numeric",
+                  })
+                }
+              />
+              <YAxis domain={[1, 10]} />
+              <Tooltip />
+              <Line
+                type="monotone"
+                dataKey="score"
+                stroke="#007bff"
+                dot={{ r: 4 }}
+              />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
+      </Rnd>
+
+      <Rnd
+        default={{
+          x: 0,
+          y: 0,
           width: 600,
           height: 350,
         }}
-        minWidth={300}
-        minHeight={300}
         dragHandleClassName="drag-header"
         className="rounded-lg shadow-md bg-white border border-gray-200"
         dragAxis="both"

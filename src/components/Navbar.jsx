@@ -39,21 +39,7 @@ const Navbar = () => {
             menuOpen ? "block" : "hidden"
           } md:flex md:flex-wrap md:items-center md:justify-start px-4 md:px-6 pb-4 md:pb-0 transition-all duration-300`}
         >
-          {/* <Router>
-            <Suspense fallback={<Loader />}>
-              <Routes>
-                <Route
-                  path="/"
-                  element={
-                    <WithLoader>
-                      <Dashboards />
-                    </WithLoader>
-                  }
-                />
-              </Routes>
-            </Suspense>
-          </Router> */}
-          <li className="flex items-center gap-2 px-4  my-1 md:my-0 md:mr-4 text-base hover:bg-blue-600 transition cursor-pointer">
+          <li className="flex items-center gap-2 px-4 py-4  my-1 md:my-0 md:mr-4 text-base bg-blue-600 transition cursor-pointer">
             <FaTh />
             <span className="text-sm">Dashboards</span>
           </li>
@@ -63,42 +49,42 @@ const Navbar = () => {
             <span className="text-sm">Questionnaires</span>
           </li>
 
-          <li className="flex items-center gap-2 px-4  my-1 md:my-0 md:mr-4  text-base hover:bg-blue-600 transition cursor-pointer">
+          <li className="flex items-center gap-2 px-4 py-4  my-1 md:my-0 md:mr-4  text-base hover:bg-blue-600 transition cursor-pointer">
             <FaRegFileAlt />
             <span className="text-sm">Chat</span>
           </li>
 
-          <li className="flex items-center gap-2 px-4  my-1 md:my-0 md:mr-4  text-base hover:bg-blue-600 transition cursor-pointer">
+          <li className="flex items-center gap-2 px-4  py-4 my-1 md:my-0 md:mr-4  text-base hover:bg-blue-600 transition cursor-pointer">
             <FaSms />
-            <span className="text-sm" >SMS</span>
+            <span className="text-sm">SMS</span>
           </li>
 
-          <li className="flex items-center gap-2 px-4  my-1 md:my-0 md:mr-4  text-base hover:bg-blue-600 transition cursor-pointer">
+          <li className="flex items-center gap-2 px-4 py-4  my-1 md:my-0 md:mr-4  text-base hover:bg-blue-600 transition cursor-pointer">
             <FaRegFileAlt />
             <span className="text-sm">Documents</span>
           </li>
 
-          <li className="flex items-center gap-2 px-4  my-1 md:my-0 md:mr-4  text-base hover:bg-blue-600 transition cursor-pointer">
+          <li className="flex items-center gap-2 px-4  py-4 my-1 md:my-0 md:mr-4  text-base hover:bg-blue-600 transition cursor-pointer">
             <FaFileMedical />
             <span className="text-sm">Health Records</span>
           </li>
 
-          <li className="flex items-center gap-2 px-4  my-1 md:my-0 md:mr-4  text-base hover:bg-blue-600 transition cursor-pointer">
+          <li className="flex items-center gap-2 px-4 py-4 my-1 md:my-0 md:mr-4  text-base hover:bg-blue-600 transition cursor-pointer">
             <FiTablet />
             <span className="text-sm">Devices</span>
           </li>
 
-          <li className="flex items-center gap-2 px-4  my-1 md:my-0 md:mr-4  text-base hover:bg-blue-600 transition cursor-pointer">
+          <li className="flex items-center gap-2 px-4 py-4 my-1 md:my-0 md:mr-4  text-base hover:bg-blue-600 transition cursor-pointer">
             <FaVideo />
             <span className="text-sm">Video Call</span>
           </li>
 
-          <li className="flex items-center gap-2 px-4  my-1 md:my-0 md:mr-4  text-base hover:bg-blue-600 transition cursor-pointer">
+          <li className="flex items-center gap-2 px-4 py-4 my-1 md:my-0 md:mr-4  text-base hover:bg-blue-600 transition cursor-pointer">
             <FaUser />
             <span className="text-sm">Profile</span>
           </li>
 
-          <li className="flex items-center gap-2 px-4  my-1 md:my-0 md:mr-4  text-base hover:bg-blue-600 transition cursor-pointer">
+          <li className="flex items-center gap-2 px-4 py-4 my-1 md:my-0 md:mr-4  text-base hover:bg-blue-600 transition cursor-pointer">
             <FaDoorOpen />
             <span className="text-sm">Exam Room</span>
           </li>
