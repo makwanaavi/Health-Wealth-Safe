@@ -1,4 +1,4 @@
-import {  FiEdit2, FiGlobe, FiBell } from "react-icons/fi";
+import { FiEdit2, FiGlobe, FiBell } from "react-icons/fi";
 import { MdAddCall, MdLockReset, MdVerified } from "react-icons/md";
 import { FaUserCircle } from "react-icons/fa";
 import { useEffect, useState, useRef } from "react";
@@ -115,13 +115,13 @@ const Header = () => {
       {/* Right: Actions */}
       <div className="flex flex-wrap items-center gap-3 justify-between md:justify-end">
         {/* Start Call */}
-        <button className="flex items-center gap-2 px-6 py-4  bg-blue-100 text-blue-600 font-medium rounded hover:bg-blue-200 transition text-sm">
+        <button className="flex items-center gap-2 px-6 py-4  bg-blue-100 text-blue-600 hover:text-white font-medium rounded hover:bg-[#3699FF] transition text-sm">
           <MdAddCall className="h-4.5 w-4.5" />
           <span className="hidden sm:inline">Start Call</span>
         </button>
 
         {/* Request Amendment */}
-        <button className="flex items-center gap-1 px-6 py-4 bg-blue-100 text-blue-600 font-medium rounded hover:bg-blue-200 transition text-sm">
+        <button className="flex items-center gap-1 px-6 py-4 bg-blue-100 text-blue-600 font-medium hover:text-white rounded transition hover:bg-[#3699FF] text-sm">
           <FiEdit2 />
           <span className="hidden sm:inline">Request Amendment</span>
         </button>
@@ -129,7 +129,7 @@ const Header = () => {
         {/* Language Dropdown */}
         <div className="relative" ref={dropdownRefs.language}>
           <div
-            className="flex items-center gap-1 text-sm text-gray-700 cursor-pointer hover:text-blue-600 transition"
+            className="flex items-center gap-1 text-base text-[#0165B5] cursor-pointer hover:text-[#3699FF] transition"
             onClick={() =>
               setOpenDropdown(openDropdown === "language" ? null : "language")
             }
@@ -152,7 +152,7 @@ const Header = () => {
         {/* Notification Dropdown */}
         <div className="relative" ref={dropdownRefs.notification}>
           <FiBell
-            className="text-xl text-gray-700 md:mx-4 sm:mx-1 hover:text-blue-600 transition cursor-pointer"
+            className="text-xl text-gray-700 md:mx-4 sm:mx-1 hover:text-[#3699FF] transition cursor-pointer"
             onClick={() =>
               setOpenDropdown(
                 openDropdown === "notification" ? null : "notification"
@@ -169,7 +169,7 @@ const Header = () => {
         {/* Profile Dropdown */}
         <div className="relative" ref={dropdownRefs.profile}>
           <FaUserCircle
-            className="text-3xl text-gray-700 cursor-pointer hover:text-blue-600 transition"
+            className="text-3xl text-gray-700 cursor-pointer hover:text-[#3699FF] transition"
             onClick={() =>
               setOpenDropdown(openDropdown === "profile" ? null : "profile")
             }
