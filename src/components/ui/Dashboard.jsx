@@ -13,11 +13,9 @@ const Dashboard = () => {
           <Navbar />
           {/* Card container to prevent overlap and allow smooth drag */}
           <div
-            className="relative bg-blue-100 p-12 flex flex-wrap gap-6 mt-6 px-4"
+            className="relative bg-blue-100 p-12 flex flex-wrap gap-6 mt-6 px-4 overflow-hidden"
             style={{
-              minHeight: 1200,
               alignItems: "flex-start",
-              overflow: "visible",
             }}
           >
             <div className="relative m-12 flex-1 min-w-[320px] max-w-[650px]">
