@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 import { Link, useNavigate } from "react-router-dom";
-import LoadingScreen from "./LoadingScreen";
 import Loader from "./LoadingScreen";
 
 const LoginForm = ({ t }) => {
@@ -9,25 +8,46 @@ const LoginForm = ({ t }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showAlert, setShowAlert] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const navigate = useNavigate();
   const canLogin = username && password;
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
+    setError("");
     if (canLogin) {
-      localStorage.setItem("username", JSON.stringify(username));
-      localStorage.setItem("password", JSON.stringify(password));
-      setShowAlert(true);
+      setLoading(true);
+      try {
+        const res = await fetch(
+          "https://api.healthwealthsafe.net/api/web/login",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ username, password }),
+          }
+        );
+        const data = await res.json();
+        if (res.ok) {
+          // Store token or user info as needed
+          localStorage.setItem("token", data.token || "");
+          setShowAlert(true);
+        } else {
+          setError(data.message || "Login failed");
+        }
+      // eslint-disable-next-line no-unused-vars
+      } catch (err) {
+        setError("Network error");
+      } finally {
+        setLoading(false);
+      }
     }
   };
 
   const handleAgreeAndContinue = () => {
     setShowAlert(false);
     navigate("/dashboard");
-    // setTimeout(() => {
-    // }, 2000);
   };
-  
 
   return (
     <form className="w-full max-w-md mx-auto space-y-4" onSubmit={handleLogin}>
@@ -61,15 +81,16 @@ const LoginForm = ({ t }) => {
           {t.forgot}
         </a>
       </div>
+      {error && <div className="text-red-500 text-sm text-center">{error}</div>}
       <div className="flex gap-4 justify-between items-center mx-20 mt-10">
         <button
           type="submit"
           className={`py-2 w-30 text-white rounded px-3 text-sm flex items-center justify-center gap-2 ${
             canLogin ? "bg-blue-500 hover:bg-blue-600" : "bg-gray-300"
           }`}
-          disabled={!canLogin}
+          disabled={!canLogin || loading}
         >
-          {t.login}
+          {loading ? <Loader /> : t.login}
         </button>
 
         <Link
