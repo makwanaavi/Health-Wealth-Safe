@@ -4,8 +4,8 @@ const FooterInfo = ({ t }) => (
       {t.address} <a href="#" className="text-blue-500 underline">{t.athens}</a>, {t.unitedStates}
     </span>
     <div className="flex gap-6 text-xs text-blue-500">
-      <a href="#" className="hover:underline">{t.privacy}</a>
-      <a href="#" className="hover:underline">{t.terms}</a>
+      <a href="https://api.healthwealthsafe.net/policies/patient_user_privacy_policy.html" target="_blank" className="hover:underline">{t.privacy}</a>
+      <a href="https://api.healthwealthsafe.net/policies/patient_user_terms_of_use.html" target="_blank" className="hover:underline">{t.terms}</a>
       <a href="#" className="hover:underline">{t.intake}</a>
     </div>
   </div>
