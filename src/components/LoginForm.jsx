@@ -29,8 +29,21 @@ const LoginForm = ({ t }) => {
         );
         const data = await res.json();
         if (res.ok) {
-          // Store token or user info as needed
-          localStorage.setItem("token", data.token || "");
+          localStorage.setItem("token", (data.data && data.data.token) || data.token || "");
+          // Extract user info from API response (data.data)
+          const userData = data.data || data.user || data;
+          localStorage.setItem(
+            "loginData",
+            JSON.stringify({
+              firstName: userData.name ? userData.name.trim().split(" ")[1] || "" : "",
+              lastName: userData.name ? userData.name.trim().split(" ")[2] || "" : "",
+              email: userData.email || "",
+              phone: userData.phone || "",
+              username: userData.username || userData.usernme || username,
+              mrn: userData.medical_record_no || userData.username || userData.usernme || username,
+              doctor: userData.doc_name || "",
+            })
+          );
           setShowAlert(true);
         } else {
           setError(data.message || "Login failed");
@@ -89,7 +102,11 @@ const LoginForm = ({ t }) => {
           }`}
           disabled={!canLogin || loading}
         >
-          {loading ? <Loader /> : t.login}
+          {loading ? (
+            <div className="w-5 h-5 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
+          ) : (
+            t.login
+          )}
         </button>
 
         <Link
@@ -174,3 +191,4 @@ const LoginForm = ({ t }) => {
 };
 
 export default LoginForm;
+
