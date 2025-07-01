@@ -11,6 +11,8 @@ import {
 } from "react-icons/fa";
 import { FiTablet, FiMenu, FiX } from "react-icons/fi";
 import HealthCards from "./HealthCards";
+import Dashboards from "./Dashboards";
+import Questionnaires from "./Questionnaires";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -20,7 +22,6 @@ const Navbar = () => {
   return (
     <>
       <nav className="bg-blue-500 text-white">
-        {/* Top bar (mobile only) */}
         <div className="flex items-center justify-between px-4 py-3 md:hidden">
           <h1 className="text-lg font-semibold">Menu</h1>
           <button onClick={toggleMenu}>
@@ -38,54 +39,68 @@ const Navbar = () => {
             menuOpen ? "block" : "hidden"
           } md:flex md:flex-wrap md:items-center md:justify-start px-4 md:px-6 pb-4 md:pb-0 transition-all duration-300`}
         >
-          <li className="flex items-center gap-2 px-4 py-2 my-1 md:my-0 md:mr-4 rounded-md text-base hover:bg-blue-600 transition cursor-pointer">
+          {/* <Router>
+            <Suspense fallback={<Loader />}>
+              <Routes>
+                <Route
+                  path="/"
+                  element={
+                    <WithLoader>
+                      <Dashboards />
+                    </WithLoader>
+                  }
+                />
+              </Routes>
+            </Suspense>
+          </Router> */}
+          <li className="flex items-center gap-2 px-4  my-1 md:my-0 md:mr-4 text-base hover:bg-blue-600 transition cursor-pointer">
             <FaTh />
-            <span>Dashboards</span>
+            <span className="text-sm">Dashboards</span>
           </li>
 
-          <li className="flex items-center gap-2 px-4 py-2 my-1 md:my-0 md:mr-4 rounded-md text-base hover:bg-blue-600 transition cursor-pointer">
+          <li className="flex items-center gap-2 px-4 py-4 my-1 md:my-0 md:mr-4  text-base hover:bg-blue-600 transition cursor-pointer">
             <FaRegCommentDots />
-            <span>Questionnaires</span>
+            <span className="text-sm">Questionnaires</span>
           </li>
 
-          <li className="flex items-center gap-2 px-4 py-2 my-1 md:my-0 md:mr-4 rounded-md text-base hover:bg-blue-600 transition cursor-pointer">
+          <li className="flex items-center gap-2 px-4  my-1 md:my-0 md:mr-4  text-base hover:bg-blue-600 transition cursor-pointer">
             <FaRegFileAlt />
-            <span>Chat</span>
+            <span className="text-sm">Chat</span>
           </li>
 
-          <li className="flex items-center gap-2 px-4 py-2 my-1 md:my-0 md:mr-4 rounded-md text-base hover:bg-blue-600 transition cursor-pointer">
+          <li className="flex items-center gap-2 px-4  my-1 md:my-0 md:mr-4  text-base hover:bg-blue-600 transition cursor-pointer">
             <FaSms />
-            <span>SMS</span>
+            <span className="text-sm" >SMS</span>
           </li>
 
-          <li className="flex items-center gap-2 px-4 py-2 my-1 md:my-0 md:mr-4 rounded-md text-base hover:bg-blue-600 transition cursor-pointer">
+          <li className="flex items-center gap-2 px-4  my-1 md:my-0 md:mr-4  text-base hover:bg-blue-600 transition cursor-pointer">
             <FaRegFileAlt />
-            <span>Documents</span>
+            <span className="text-sm">Documents</span>
           </li>
 
-          <li className="flex items-center gap-2 px-4 py-2 my-1 md:my-0 md:mr-4 rounded-md text-base hover:bg-blue-600 transition cursor-pointer">
+          <li className="flex items-center gap-2 px-4  my-1 md:my-0 md:mr-4  text-base hover:bg-blue-600 transition cursor-pointer">
             <FaFileMedical />
-            <span>Health Records</span>
+            <span className="text-sm">Health Records</span>
           </li>
 
-          <li className="flex items-center gap-2 px-4 py-2 my-1 md:my-0 md:mr-4 rounded-md text-base hover:bg-blue-600 transition cursor-pointer">
+          <li className="flex items-center gap-2 px-4  my-1 md:my-0 md:mr-4  text-base hover:bg-blue-600 transition cursor-pointer">
             <FiTablet />
-            <span>Devices</span>
+            <span className="text-sm">Devices</span>
           </li>
 
-          <li className="flex items-center gap-2 px-4 py-2 my-1 md:my-0 md:mr-4 rounded-md text-base hover:bg-blue-600 transition cursor-pointer">
+          <li className="flex items-center gap-2 px-4  my-1 md:my-0 md:mr-4  text-base hover:bg-blue-600 transition cursor-pointer">
             <FaVideo />
-            <span>Video Call</span>
+            <span className="text-sm">Video Call</span>
           </li>
 
-          <li className="flex items-center gap-2 px-4 py-2 my-1 md:my-0 md:mr-4 rounded-md text-base hover:bg-blue-600 transition cursor-pointer">
+          <li className="flex items-center gap-2 px-4  my-1 md:my-0 md:mr-4  text-base hover:bg-blue-600 transition cursor-pointer">
             <FaUser />
-            <span>Profile</span>
+            <span className="text-sm">Profile</span>
           </li>
 
-          <li className="flex items-center gap-2 px-4 py-2 my-1 md:my-0 md:mr-4 rounded-md text-base hover:bg-blue-600 transition cursor-pointer">
+          <li className="flex items-center gap-2 px-4  my-1 md:my-0 md:mr-4  text-base hover:bg-blue-600 transition cursor-pointer">
             <FaDoorOpen />
-            <span>Exam Room</span>
+            <span className="text-sm">Exam Room</span>
           </li>
         </ul>
       </nav>
