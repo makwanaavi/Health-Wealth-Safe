@@ -2,6 +2,7 @@ import { useState } from "react";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 import { Link, useNavigate } from "react-router-dom";
 import LoadingScreen from "./LoadingScreen";
+import Loader from "./LoadingScreen";
 
 const LoginForm = ({ t }) => {
   const [showPassword, setShowPassword] = useState(false);
@@ -22,10 +23,11 @@ const LoginForm = ({ t }) => {
 
   const handleAgreeAndContinue = () => {
     setShowAlert(false);
-    setTimeout(() => {
-      navigate("/dashboard");
-    }, 3000);
+    navigate("/dashboard");
+    // setTimeout(() => {
+    // }, 2000);
   };
+  
 
   return (
     <form className="w-full max-w-md mx-auto space-y-4" onSubmit={handleLogin}>
