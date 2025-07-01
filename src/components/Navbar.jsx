@@ -11,33 +11,21 @@ import {
 } from "react-icons/fa";
 import { FiTablet, FiMenu, FiX } from "react-icons/fi";
 
-const navItems = [
-  { name: "Dashboards", icon: <FaTh /> },
-  { name: "Questionnaires", icon: <FaRegCommentDots /> },
-  { name: "Chat", icon: <FaRegFileAlt /> },
-  { name: "SMS", icon: <FaSms /> },
-  { name: "Documents", icon: <FaRegFileAlt /> },
-  { name: "Health Records", icon: <FaFileMedical /> },
-  { name: "Devices", icon: <FiTablet /> },
-  { name: "Video Call", icon: <FaVideo /> },
-  { name: "Profile", icon: <FaUser /> },
-  { name: "Exam Room", icon: <FaDoorOpen /> },
-];
-
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
   return (
-    <nav className="bg-blue-500 text-white py-2">
-      {/* Top Bar for Mobile */}
-      <div className="flex items-center justify-between px-6 py-3 md:hidden">
+    <nav className="bg-blue-500 text-white">
+      {/* Top bar (mobile only) */}
+      <div className="flex items-center justify-between px-4 py-3 md:hidden">
+        <h1 className="text-lg font-semibold">Menu</h1>
         <button onClick={toggleMenu}>
           {menuOpen ? (
-            <FiX className="text-2xl" />
+            <FiX className="text-3xl" />
           ) : (
-            <FiMenu className="text-2xl" />
+            <FiMenu className="text-3xl" />
           )}
         </button>
       </div>
@@ -46,19 +34,57 @@ const Navbar = () => {
       <ul
         className={`${
           menuOpen ? "block" : "hidden"
-        } md:flex md:flex-row flex-col md:items-center w-full md:w-auto px-4 md:px-6 pb-2 md:pb-0 transition-all duration-300 ease-in-out`}
+        } md:flex md:flex-wrap md:items-center md:justify-start px-4 md:px-6 pb-4 md:pb-0 transition-all duration-300`}
       >
-        {navItems.map((item, index) => (
-          <li
-            key={index}
-            className={`flex items-center gap-2 px-6 py-2 rounded-md my-1 md:my-0 ${
-              item.active ? "bg-blue-700" : "hover:bg-blue-600"
-            } cursor-pointer text-sm transition`}
-          >
-            {item.icon}
-            <span>{item.name}</span>
-          </li>
-        ))}
+        <li className="flex items-center gap-2 px-4 py-5 my-1 md:my-0 md:mr-4 rounded-md text-base hover:bg-blue-600 transition cursor-pointer">
+          <FaTh />
+          <span>Dashboards</span>
+        </li>
+
+        <li className="flex items-center gap-2 px-4 py-5 my-1 md:my-0 md:mr-4 rounded-md text-base hover:bg-blue-600 transition cursor-pointer">
+          <FaRegCommentDots />
+          <span>Questionnaires</span>
+        </li>
+
+        <li className="flex items-center gap-2 px-4 py-5 my-1 md:my-0 md:mr-4 rounded-md text-base hover:bg-blue-600 transition cursor-pointer">
+          <FaRegFileAlt />
+          <span>Chat</span>
+        </li>
+
+        <li className="flex items-center gap-2 px-4 py-5 my-1 md:my-0 md:mr-4 rounded-md text-base hover:bg-blue-600 transition cursor-pointer">
+          <FaSms />
+          <span>SMS</span>
+        </li>
+
+        <li className="flex items-center gap-2 px-4 py-5 my-1 md:my-0 md:mr-4 rounded-md text-base hover:bg-blue-600 transition cursor-pointer">
+          <FaRegFileAlt />
+          <span>Documents</span>
+        </li>
+
+        <li className="flex items-center gap-2 px-4 py-5 my-1 md:my-0 md:mr-4 rounded-md text-base hover:bg-blue-600 transition cursor-pointer">
+          <FaFileMedical />
+          <span>Health Records</span>
+        </li>
+
+        <li className="flex items-center gap-2 px-4 py-5 my-1 md:my-0 md:mr-4 rounded-md text-base hover:bg-blue-600 transition cursor-pointer">
+          <FiTablet />
+          <span>Devices</span>
+        </li>
+
+        <li className="flex items-center gap-2 px-4 py-5 my-1 md:my-0 md:mr-4 rounded-md text-base hover:bg-blue-600 transition cursor-pointer">
+          <FaVideo />
+          <span>Video Call</span>
+        </li>
+
+        <li className="flex items-center gap-2 px-4 py-5 my-1 md:my-0 md:mr-4 rounded-md text-base hover:bg-blue-600 transition cursor-pointer">
+          <FaUser />
+          <span>Profile</span>
+        </li>
+
+        <li className="flex items-center gap-2 px-4 py-5 my-1 md:my-0 md:mr-4 rounded-md text-base hover:bg-blue-600 transition cursor-pointer">
+          <FaDoorOpen />
+          <span>Exam Room</span>
+        </li>
       </ul>
     </nav>
   );
