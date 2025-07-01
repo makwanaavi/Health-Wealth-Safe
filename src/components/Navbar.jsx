@@ -21,7 +21,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="bg-blue-500 text-white">
+      <nav className=" text-white"  style={{backgroundColor : "#3699FF"}}>
         <div className="flex items-center justify-between px-4 py-3 md:hidden">
           <h1 className="text-lg font-semibold">Menu</h1>
           <button onClick={toggleMenu}>
@@ -39,17 +39,18 @@ const Navbar = () => {
             menuOpen ? "block" : "hidden"
           } md:flex md:flex-wrap md:items-center md:justify-start px-4 md:px-6 pb-4 md:pb-0 transition-all duration-300`}
         >
-          <li className="flex items-center gap-2 px-4 py-4  my-1 md:my-0 md:mr-4 text-base bg-blue-600 transition cursor-pointer">
+          <li className="flex items-center gap-2 px-4 py-4  my-1 md:my-0 md:mr-4 text-base  transition cursor-pointer"
+          style={{backgroundColor : "#3699FF"}}>
             <FaTh />
             <span className="text-sm">Dashboards</span>
           </li>
 
-          <li className="flex items-center gap-2 px-4 py-4 my-1 md:my-0 md:mr-4  text-base hover:bg-blue-600 transition cursor-pointer">
+          <li className="flex items-center gap-2 px-4 py-4 my-1 md:my-0 md:mr-4  text-base hover:bg-blue-700 transition cursor-pointer">
             <FaRegCommentDots />
             <span className="text-sm">Questionnaires</span>
           </li>
 
-          <li className="flex items-center gap-2 px-4 py-4  my-1 md:my-0 md:mr-4  text-base hover:bg-blue-600 transition cursor-pointer">
+          <li className="flex items-center gap-2 px-4 py-4  my-1 md:my-0 md:mr-4  text-base hover:bg-blue-900 transition cursor-pointer">
             <FaRegFileAlt />
             <span className="text-sm">Chat</span>
           </li>
