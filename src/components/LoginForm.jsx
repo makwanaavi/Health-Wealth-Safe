@@ -29,8 +29,32 @@ const LoginForm = ({ t }) => {
         );
         const data = await res.json();
         if (res.ok) {
-          // Store token or user info as needed
-          localStorage.setItem("token", data.token || "");
+          localStorage.setItem(
+            "token",
+            (data.data && data.data.token) || data.token || ""
+          );
+          // Extract user info from API response (data.data)
+          const userData = data.data || data.user || data;
+          localStorage.setItem(
+            "loginData",
+            JSON.stringify({
+              firstName: userData.name
+                ? userData.name.trim().split(" ")[1] || ""
+                : "",
+              lastName: userData.name
+                ? userData.name.trim().split(" ")[2] || ""
+                : "",
+              email: userData.email || "",
+              phone: userData.phone || "",
+              username: userData.username || userData.usernme || username,
+              mrn:
+                userData.medical_record_no ||
+                userData.username ||
+                userData.usernme ||
+                username,
+              doctor: userData.doc_name || "",
+            })
+          );
           setShowAlert(true);
         } else {
           setError(data.message || "Login failed");
@@ -89,7 +113,11 @@ const LoginForm = ({ t }) => {
           }`}
           disabled={!canLogin || loading}
         >
-          {loading ? <Loader /> : t.login}
+          {loading ? (
+            <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+          ) : (
+            t.login
+          )}
         </button>
 
         <Link
@@ -144,9 +172,12 @@ const LoginForm = ({ t }) => {
 
       {/* Alert Popup */}
       {showAlert && (
-        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50">
-          <div className="bg-white p-6 rounded shadow-md max-w-md w-full text-center">
-            <p className="text-sm text-gray-800">
+        <div className="fixed inset-0 bg-black/70  flex items-center justify-center z-50">
+          <div
+            className="bg-white p-6 rounded shadow-md  w-150 text-center"
+
+          >
+            <p className="text-base text-gray-800" style={{ margin: "12px" }}>
               If you think you or someone you care for is having a medical or
               mental <br />
               health emergency, call 911 or go to the nearest hospital. Do not

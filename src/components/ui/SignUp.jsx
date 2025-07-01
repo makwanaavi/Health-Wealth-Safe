@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import countryCodes from "../CountryCodes.json";
+import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -31,6 +32,13 @@ const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [countryCode, setCountryCode] = useState("+91"); // Default to India
+  const [loading, setLoading] = useState(false);
+  const [apiErrors, setApiErrors] = useState({
+    email: "",
+    mobile: "",
+    username: "",
+    register: "",
+  });
 
   // Helper to get min/max length for selected country code
   const getMobileLength = (code) => {
@@ -110,6 +118,66 @@ const SignUp = () => {
     // setFormData({ ...formData, mobile: "" });
   };
 
+  // API: Check Email
+  const checkEmail = async (email) => {
+    if (!email) return;
+    setApiErrors((e) => ({ ...e, email: "" }));
+    try {
+      const res = await fetch(
+        `https://api.healthwealthsafe.net/api/checkEmail?email=${encodeURIComponent(
+          email
+        )}&userId=`
+      );
+      const data = await res.json();
+      if (data.exists) {
+        setApiErrors((e) => ({ ...e, email: "Email already exists." }));
+      }
+    } catch {
+      setApiErrors((e) => ({ ...e, email: "Email check failed." }));
+    }
+  };
+
+  // API: Check Phone
+  const checkPhone = async (phone) => {
+    if (!phone) return;
+    setApiErrors((e) => ({ ...e, mobile: "" }));
+    try {
+      const res = await fetch(
+        `https://api.healthwealthsafe.net/api/checkPhone?phone=${encodeURIComponent(
+          phone
+        )}&userId=`
+      );
+      const data = await res.json();
+      if (data.exists) {
+        setApiErrors((e) => ({ ...e, mobile: "Phone number already exists." }));
+      }
+    } catch {
+      setApiErrors((e) => ({ ...e, mobile: "Phone check failed." }));
+    }
+  };
+
+  // API: Check Username
+  const checkUsername = async (username) => {
+    if (!username) return;
+    setApiErrors((e) => ({ ...e, username: "" }));
+    try {
+      const res = await fetch(
+        `https://api.healthwealthsafe.net/api/checkUsername`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ username }),
+        }
+      );
+      const data = await res.json();
+      if (data.exists) {
+        setApiErrors((e) => ({ ...e, username: "Username already exists." }));
+      }
+    } catch {
+      setApiErrors((e) => ({ ...e, username: "Username check failed." }));
+    }
+  };
+
   const isFormValid = () => {
     return (
       formData.firstName.trim() &&
@@ -117,7 +185,9 @@ const SignUp = () => {
       formData.mobile.trim() &&
       formData.email.trim() &&
       !errors.mobile &&
-      agreements.terms
+      agreements.terms &&
+      !apiErrors.email &&
+      !apiErrors.mobile
     );
   };
 
@@ -128,7 +198,8 @@ const SignUp = () => {
       formData.confirmPassword &&
       formData.password === formData.confirmPassword &&
       formData.birthDate &&
-      formData.gender
+      formData.gender &&
+      !apiErrors.username
     );
   };
 
@@ -144,16 +215,140 @@ const SignUp = () => {
     setStep(1);
   };
 
-  const handleSubmit = (e) => {
+  // Register API
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (isAccountFormValid()) {
-      localStorage.setItem(
-        "signupData",
-        JSON.stringify({ ...formData, ...agreements })
+    if (!isAccountFormValid()) return;
+    setLoading(true);
+    setApiErrors((e) => ({ ...e, register: "" }));
+
+    try {
+      // Check for existing email, phone, or username before submitting
+      // Check email
+      const emailRes = await fetch(
+        `https://api.healthwealthsafe.net/api/checkEmail?email=${encodeURIComponent(
+          formData.email
+        )}&userId=`
       );
-      // In a real app, you would send data to your backend here
-      navigate("/dashboard");
+      const emailData = await emailRes.json();
+      if (emailData.exists) {
+        setApiErrors((e) => ({ ...e, register: "Email already exists." }));
+        setLoading(false);
+        return;
+      }
+      // Check phone
+      const phoneNumber = (countryCode + formData.mobile).replace(/\+/g, "");
+      const phoneRes = await fetch(
+        `https://api.healthwealthsafe.net/api/checkPhone?phone=${encodeURIComponent(
+          phoneNumber
+        )}&userId=`
+      );
+      const phoneData = await phoneRes.json();
+      if (phoneData.exists) {
+        setApiErrors((e) => ({
+          ...e,
+          register: "Phone number already exists.",
+        }));
+        setLoading(false);
+        return;
+      }
+      // Check username
+      const usernameRes = await fetch(
+        `https://api.healthwealthsafe.net/api/checkUsername`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ username: formData.username }),
+        }
+      );
+      const usernameData = await usernameRes.json();
+      if (usernameData.exists) {
+        setApiErrors((e) => ({ ...e, register: "Username already exists." }));
+        setLoading(false);
+        return;
+      }
+
+      // Format date as YYYY-MM-DD
+      let dob = formData.birthDate;
+      if (dob && dob.includes("/")) {
+        const parts = dob.split("/");
+        if (parts.length === 3) {
+          dob = `${parts[2]}-${parts[1].padStart(2, "0")}-${parts[0].padStart(
+            2,
+            "0"
+          )}`;
+        }
+      }
+
+      // Prepare payload as per API requirements
+      const phoneNumberForPayload = (countryCode + formData.mobile).replace(
+        /\+/g,
+        ""
+      );
+      const payload = {
+        firstName: formData.firstName,
+        middleName: formData.middleName,
+        lastName: formData.lastName,
+        email: formData.email,
+        phone: phoneNumberForPayload,
+        username: formData.username,
+        password: formData.password,
+        dob: dob,
+        gender: formData.gender,
+      };
+
+      const res = await fetch(
+        "https://api.healthwealthsafe.net/api/publicRegisterPatient",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        }
+      );
+      const data = await res.json();
+      let userData = null;
+      if (data.status === "success" && data.data) {
+        userData = data.data.userData || data.data;
+      }
+      if (userData) {
+        localStorage.setItem(
+          "signupData",
+          JSON.stringify({
+            firstName: userData.name
+              ? userData.name.trim().split(" ")[1] || ""
+              : "",
+            lastName: userData.name
+              ? userData.name.trim().split(" ")[2] || ""
+              : "",
+            email: userData.email || "",
+            phone: userData.phone || "",
+            username:
+              userData.username || userData.usernme || formData.username,
+            mrn:
+              userData.medical_record_no ||
+              userData.username ||
+              userData.usernme ||
+              formData.username,
+            doctor: userData.doc_name || "",
+          })
+        );
+        localStorage.removeItem("loginData");
+        navigate("/dashboard");
+      } else if (data.message) {
+        setApiErrors((e) => ({
+          ...e,
+          register: data.message,
+        }));
+      } else {
+        setApiErrors((e) => ({
+          ...e,
+          register: "Registration failed.",
+        }));
+      }
+    } catch {
+      setApiErrors((e) => ({ ...e, register: "Registration failed." }));
     }
+    setLoading(false);
   };
 
   return (
@@ -228,8 +423,12 @@ const SignUp = () => {
                   placeholder="Email"
                   value={formData.email}
                   onChange={handleInputChange}
+                  onBlur={() => checkEmail(formData.email)}
                   className="block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-green-400 focus:border-green-400 text-base"
                 />
+                {apiErrors.email && (
+                  <p className="text-red-500 text-sm">{apiErrors.email}</p>
+                )}
                 {/* Phone Api*/}
                 <div className="flex gap-2">
                   <select
@@ -239,6 +438,7 @@ const SignUp = () => {
                   >
                     {countryCodes.map((country) => (
                       <option key={country.code} value={country.dial_code}>
+                        {country.flag ? country.flag + " " : ""}
                         {country.code} {country.dial_code}
                       </option>
                     ))}
@@ -251,24 +451,22 @@ const SignUp = () => {
                     placeholder="Mobile Number"
                     value={formData.mobile}
                     onChange={handleInputChange}
+                    onBlur={() => checkPhone(countryCode + formData.mobile)}
                     onInput={(e) => {
                       e.target.value = e.target.value.replace(/\s+/g, "");
                     }}
                     maxLength={getMobileLength(countryCode)}
                     className="block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-green-400 focus:border-green-400 text-base"
                   />
-                  {/* If you use PhoneInput component, update it similarly */}
-                  {/* <PhoneInput
-                    formData={formData}
-                    errors={errors}
-                    handleInputChange={handleInputChange}
-                  /> */}
                 </div>
                 {errors.mobile && (
                   <p className="text-red-500 text-sm">
                     Mobile number must be {getMobileLength(countryCode)} digits
                     and contain only numbers.
                   </p>
+                )}
+                {apiErrors.mobile && (
+                  <p className="text-red-500 text-sm">{apiErrors.mobile}</p>
                 )}
                 <div className="flex items-center mt-2">
                   <input
@@ -339,10 +537,7 @@ const SignUp = () => {
               </form>
             )}
             {step === 2 && (
-              <form
-                onSubmit={handleSubmit}
-                // className="z-10 w-full max-w-md p-8 rounded-2xl shadow-xl"
-              >
+              <form onSubmit={handleSubmit}>
                 <h2 className="text-xl font-bold text-center px-12 mb-6 text-gray-800">
                   Account Information
                 </h2>
@@ -352,9 +547,15 @@ const SignUp = () => {
                   placeholder="Username *"
                   value={formData.username}
                   onChange={handleInputChange}
+                  onBlur={() => checkUsername(formData.username)}
                   className="w-full p-3 mb-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
                   required
                 />
+                {apiErrors.username && (
+                  <p className="text-red-500 text-sm mb-2">
+                    {apiErrors.username}
+                  </p>
+                )}
                 <div className="relative mb-4">
                   <input
                     type={showPassword ? "text" : "password"}
@@ -369,7 +570,11 @@ const SignUp = () => {
                     onClick={() => setShowPassword(!showPassword)}
                     className="absolute top-3 right-3 cursor-pointer text-gray-500"
                   >
-                    {showPassword ? "🙈" : "👁️"}
+                    {showPassword ? (
+                      <IoMdEyeOff className=" mt-1 w-4 h-4" />
+                    ) : (
+                      <IoMdEye className=" mt-1 w-4 h-4" />
+                    )}
                   </span>
                 </div>
                 <div className="relative mb-4">
@@ -382,11 +587,16 @@ const SignUp = () => {
                     className="w-full p-3 border border-gray-300 rounded-md pr-10 focus:outline-none focus:ring-2 focus:ring-blue-400"
                     required
                   />
+
                   <span
                     onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                     className="absolute top-3 right-3 cursor-pointer text-gray-500"
                   >
-                    {showConfirmPassword ? "🙈" : "👁️"}
+                    {showConfirmPassword ? (
+                      <IoMdEyeOff className=" mt-1 w-4 h-4" />
+                    ) : (
+                      <IoMdEye className=" mt-1 w-4 h-4" />
+                    )}
                   </span>
                 </div>
                 {formData.confirmPassword &&
@@ -433,12 +643,17 @@ const SignUp = () => {
                   </button>
                   <button
                     type="submit"
-                    disabled={!isAccountFormValid()}
+                    disabled={!isAccountFormValid() || loading}
                     className="bg-green-400 hover:bg-green-500 text-white font-semibold px-5 py-2 rounded-full transition"
                   >
-                    Create Account
+                    {loading ? "Creating..." : "Create Account"}
                   </button>
                 </div>
+                {apiErrors.register && (
+                  <p className="text-red-500 text-sm mt-2">
+                    {apiErrors.register}
+                  </p>
+                )}
               </form>
             )}
           </div>
