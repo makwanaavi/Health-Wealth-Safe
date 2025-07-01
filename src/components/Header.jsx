@@ -1,7 +1,10 @@
-import { FiPhoneCall, FiEdit2, FiGlobe, FiBell } from "react-icons/fi";
-import { MdVerified } from "react-icons/md";
+import {  FiEdit2, FiGlobe, FiBell } from "react-icons/fi";
+import { MdAddCall, MdLockReset, MdVerified } from "react-icons/md";
 import { FaUserCircle } from "react-icons/fa";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import { IoMdMail } from "react-icons/io";
+import { GrLogout } from "react-icons/gr";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   // Fetch user data from localStorage (set by Login or SignUp)
@@ -48,6 +51,30 @@ const Header = () => {
     return "U";
   };
 
+  // Dropdown state
+  const [openDropdown, setOpenDropdown] = useState(null); // 'language' | 'notification' | 'profile' | null
+
+  // For closing dropdowns on outside click
+  const dropdownRefs = {
+    language: useRef(null),
+    notification: useRef(null),
+    profile: useRef(null),
+  };
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (
+        !dropdownRefs.language.current?.contains(event.target) &&
+        !dropdownRefs.notification.current?.contains(event.target) &&
+        !dropdownRefs.profile.current?.contains(event.target)
+      ) {
+        setOpenDropdown(null);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   return (
     <div className="flex flex-col md:flex-row md:items-center justify-between bg-white p-4 shadow-md gap-4 md:gap-0">
       {/* Left: User Info */}
@@ -60,17 +87,19 @@ const Header = () => {
         {/* User Details */}
         <div className="text-sm">
           <div className="flex items-center gap-1 font-semibold text-gray-800 flex-wrap">
+            <MdVerified className="text-blue-500 h-5 w-5" />
             {user.firstName || user.lastName
               ? `${user.firstName} ${user.lastName}`.trim()
               : "User"}
-            <MdVerified className="text-blue-500" />
           </div>
-          <div className="text-gray-600">
-            <span className="block md:inline md:mr-2">
-              📞 {user.phone ? user.phone : "(---) --- ----"}
+          <div className="text-gray-600 mt-2 gap-4 flex justify-center">
+            <span className="flex gap-1 items-center">
+              <MdAddCall className="h-4.5 w-4.5" />
+              {user.phone ? user.phone : "(---) --- ----"}
             </span>
-            <span className="block md:inline">
-              ✉️ {user.email || "user@email.com"}
+            <span className="flex gap-1 items-center">
+              <IoMdMail className="h-4.5 w-4.5" />{" "}
+              {user.email || "user@email.com"}
             </span>
           </div>
           <div className="text-gray-600 mt-1 flex-wrap">
@@ -86,28 +115,82 @@ const Header = () => {
       {/* Right: Actions */}
       <div className="flex flex-wrap items-center gap-3 justify-between md:justify-end">
         {/* Start Call */}
-        <button className="flex items-center gap-1 px-3 py-2 bg-blue-100 text-blue-600 font-medium rounded hover:bg-blue-200 transition text-sm">
-          <FiPhoneCall />
+        <button className="flex items-center gap-2 px-6 py-4  bg-blue-100 text-blue-600 font-medium rounded hover:bg-blue-200 transition text-sm">
+          <MdAddCall className="h-4.5 w-4.5" />
           <span className="hidden sm:inline">Start Call</span>
         </button>
 
         {/* Request Amendment */}
-        <button className="flex items-center gap-1 px-3 py-2 bg-blue-100 text-blue-600 font-medium rounded hover:bg-blue-200 transition text-sm">
+        <button className="flex items-center gap-1 px-6 py-4 bg-blue-100 text-blue-600 font-medium rounded hover:bg-blue-200 transition text-sm">
           <FiEdit2 />
           <span className="hidden sm:inline">Request Amendment</span>
         </button>
 
-        {/* Language */}
-        <div className="flex items-center gap-1 text-sm text-gray-700 cursor-pointer hover:text-blue-600 transition">
-          <FiGlobe />
-          <span className="hidden sm:inline">English</span>
+        {/* Language Dropdown */}
+        <div className="relative" ref={dropdownRefs.language}>
+          <div
+            className="flex items-center gap-1 text-sm text-gray-700 cursor-pointer hover:text-blue-600 transition"
+            onClick={() =>
+              setOpenDropdown(openDropdown === "language" ? null : "language")
+            }
+          >
+            <FiGlobe />
+            <span className="hidden sm:inline">English</span>
+          </div>
+          {openDropdown === "language" && (
+            <div className="absolute z-20 mt-2 w-28 bg-white rounded shadow-lg py-2 text-gray-800 right-0">
+              <div className="px-4 py-2 hover:bg-blue-50 cursor-pointer">
+                English
+              </div>
+              <div className="px-4 py-2 hover:bg-blue-50 cursor-pointer">
+                Hindi
+              </div>
+            </div>
+          )}
         </div>
 
-        {/* Notification */}
-        <FiBell className="text-xl text-gray-700 md:mx-4 sm:mx-1 hover:text-blue-600 transition cursor-pointer" />
+        {/* Notification Dropdown */}
+        <div className="relative" ref={dropdownRefs.notification}>
+          <FiBell
+            className="text-xl text-gray-700 md:mx-4 sm:mx-1 hover:text-blue-600 transition cursor-pointer"
+            onClick={() =>
+              setOpenDropdown(
+                openDropdown === "notification" ? null : "notification"
+              )
+            }
+          />
+          {openDropdown === "notification" && (
+            <div className="absolute z-20 mt-2 w-64 bg-white rounded shadow-lg py-4 text-gray-800 right-0 text-center">
+              No new notification found!
+            </div>
+          )}
+        </div>
 
-        {/* Profile Icon */}
-        <FaUserCircle className="text-3xl text-gray-700 cursor-pointer hover:text-blue-600 transition" />
+        {/* Profile Dropdown */}
+        <div className="relative" ref={dropdownRefs.profile}>
+          <FaUserCircle
+            className="text-3xl text-gray-700 cursor-pointer hover:text-blue-600 transition"
+            onClick={() =>
+              setOpenDropdown(openDropdown === "profile" ? null : "profile")
+            }
+          />
+          {openDropdown === "profile" && (
+            <div className="absolute z-20 mt-2 w-56 bg-white rounded shadow-lg py-2 text-gray-800 right-0">
+              <div className="flex items-center px-4 py-2 hover:bg-blue-50 cursor-pointer gap-2">
+                <span className="text-lg">
+                  <MdLockReset />
+                </span>
+                Reset Password
+              </div>
+              <div className="flex items-center px-4 py-2 hover:bg-blue-50 cursor-pointer gap-2">
+                <span className="text-lg">
+                  <GrLogout />
+                </span>
+                <Link to="/">Logout</Link>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

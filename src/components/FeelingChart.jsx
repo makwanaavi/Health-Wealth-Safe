@@ -117,7 +117,7 @@ const ResizableFeelingCard = () => {
         default={{
           x: 0,
           y: 0,
-          width: 700,
+          width: 600,
           height: 350,
         }}
         minWidth={300}
