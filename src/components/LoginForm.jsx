@@ -100,7 +100,7 @@ const LoginForm = ({ t }) => {
       </div>
       <hr />
       <div className="text-right">
-        <a href="#" className="text-sm text-blue-500 hover:underline">
+        <a href="#" className="text-sm text-[#3699FF] hover:underline">
           {t.forgot}
         </a>
       </div>
@@ -109,7 +109,7 @@ const LoginForm = ({ t }) => {
         <button
           type="submit"
           className={`py-2 w-30 text-white rounded px-3 text-sm flex items-center justify-center gap-2 ${
-            canLogin ? "bg-blue-500 hover:bg-blue-600" : "bg-gray-300"
+            canLogin ? "bg-[#3699FF] hover:bg-[#3699FF]/90" : "bg-gray-300"
           }`}
           disabled={!canLogin || loading}
         >
@@ -123,7 +123,7 @@ const LoginForm = ({ t }) => {
         <Link
           to="/sign-up"
           type="submit"
-          className="py-2 bg-blue-500 w-30 text-center text-white rounded hover:bg-blue-600 px-3 text-sm"
+          className="py-2 bg-[#3699FF] w-30 text-center text-white rounded px-3 text-sm"
         >
           {t.signup}
         </Link>
@@ -131,11 +131,11 @@ const LoginForm = ({ t }) => {
 
       <p className="text-sm text-start">
         {t.dontHave}{" "}
-        <a href="#" className="text-blue-600 hover:underline">
+        <a href="#" className="text-[#3699FF] hover:underline">
           {t.register}
         </a>
       </p>
-      <p className="text-sm text-start text-blue-500">
+      <p className="text-sm text-start text-[#3699FF]">
         <a href="#">{t.manageData}</a>
       </p>
       <div className="flex items-center mb-10 text-start">
@@ -173,10 +173,7 @@ const LoginForm = ({ t }) => {
       {/* Alert Popup */}
       {showAlert && (
         <div className="fixed inset-0 bg-black/70  flex items-center justify-center z-50">
-          <div
-            className="bg-white p-6 rounded shadow-md  w-150 text-center"
-
-          >
+          <div className="bg-white p-6 rounded shadow-md  w-150 text-center">
             <p className="text-base text-gray-800" style={{ margin: "12px" }}>
               If you think you or someone you care for is having a medical or
               mental <br />
@@ -185,7 +182,7 @@ const LoginForm = ({ t }) => {
             </p>
             <div className="flex justify-center gap-4 mt-6">
               <button
-                className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                className="px-4 py-2 bg-[#3699FF] text-white rounded hover:bg-[#3699FF]/80"
                 onClick={handleAgreeAndContinue}
               >
                 Agree and Continue

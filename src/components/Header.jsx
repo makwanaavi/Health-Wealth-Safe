@@ -52,7 +52,7 @@ const Header = () => {
   };
 
   // Dropdown state
-  const [openDropdown, setOpenDropdown] = useState(null); // 'language' | 'notification' | 'profile' | null
+  const [openDropdown, setOpenDropdown] = useState(null);
 
   // For closing dropdowns on outside click
   const dropdownRefs = {
@@ -80,7 +80,7 @@ const Header = () => {
       {/* Left: User Info */}
       <div className="flex items-start md:items-center gap-4 flex-1">
         {/* Avatar */}
-        <div className="flex items-center justify-center w-12 h-12 bg-blue-100 text-blue-800 text-xl font-bold rounded">
+        <div className="flex items-center justify-center w-12 h-12 bg-[#3699FF] text-white text-xl font-bold rounded">
           {getInitials()}
         </div>
 
@@ -115,13 +115,13 @@ const Header = () => {
       {/* Right: Actions */}
       <div className="flex flex-wrap items-center gap-3 justify-between md:justify-end">
         {/* Start Call */}
-        <button className="flex items-center gap-2 px-6 py-4  bg-blue-100 text-blue-600 hover:text-white font-medium rounded hover:bg-[#3699FF] transition text-sm">
+        <button className="flex items-center gap-2 px-6 py-4  bg-[#3699FF]/90 text-white font-medium rounded hover:bg-[#3699FF] transition text-sm">
           <MdAddCall className="h-4.5 w-4.5" />
           <span className="hidden sm:inline">Start Call</span>
         </button>
 
         {/* Request Amendment */}
-        <button className="flex items-center gap-1 px-6 py-4 bg-blue-100 text-blue-600 font-medium hover:text-white rounded transition hover:bg-[#3699FF] text-sm">
+        <button className="flex items-center gap-1 px-6 py-4 bg-[#3699FF]/90 text-white font-medium rounded transition hover:bg-[#3699FF] text-sm">
           <FiEdit2 />
           <span className="hidden sm:inline">Request Amendment</span>
         </button>
@@ -134,17 +134,17 @@ const Header = () => {
               setOpenDropdown(openDropdown === "language" ? null : "language")
             }
           >
-            <FiGlobe />
-            <span className="hidden sm:inline">English</span>
+            <FiGlobe className="text-[#3699FF]" />
+            <span className="hidden sm:inline text-[#3699FF]">English</span>
           </div>
           {openDropdown === "language" && (
-            <div className="absolute z-20 mt-2 w-28 bg-white rounded shadow-lg py-2 text-gray-800 right-0">
-              <div className="px-4 py-2 hover:bg-blue-50 cursor-pointer">
+            <div className="absolute z-20 mt-2 w-28 bg-[#3699FF] rounded shadow-lg py-2 text-[#3699FF] right-0">
+              <div className="px-4 py-2 hover:hover:bg-[#3699FF] cursor-pointer">
                 English
               </div>
-              <div className="px-4 py-2 hover:bg-blue-50 cursor-pointer">
+              <div className="px-4 py-2 hover:hover:bg-[#3699FF] cursor-pointer">
                 Hindi
-              </div>
+              </div>  
             </div>
           )}
         </div>

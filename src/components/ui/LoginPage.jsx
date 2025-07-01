@@ -27,7 +27,7 @@ const LoginPage = () => {
             <div className="flex justify-center m-2">
               <img src="/logo_latest.png" alt="Logo" className="w-28 md:w-40" />
             </div>
-            <h2 className="text-center text-gray-400 font-normal mb-6 text-xs md:text-base">
+            <h2 className="text-center text-[#3699FF] font-normal mb-6 text-xs md:text-base">
               {t.signIn}
             </h2>
             <LoginForm t={t} />
