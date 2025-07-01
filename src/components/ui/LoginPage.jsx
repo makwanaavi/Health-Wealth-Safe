@@ -8,7 +8,9 @@ const LoginPage = () => {
   const [open, setOpen] = useState(false);
   const [language, setLanguage] = useState("en");
   const t = translations[language];
+  const [showLoader] = useState(false);
 
+  if (showLoader) return <Loader />;
   return (
     <div className="flex flex-col md:flex-row min-h-screen bg-white relative">
       <LeftBanner t={t} />
