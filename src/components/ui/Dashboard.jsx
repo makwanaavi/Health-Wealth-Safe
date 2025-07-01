@@ -1,4 +1,4 @@
-import FeelingChart from "../FeelingChart";
+import Dashboards from "../Dashboards";
 import Header from "../Header";
 import Navbar from "../Navbar";
 
@@ -19,7 +19,7 @@ const Dashboard = () => {
             }}
           >
             <div className="relative m-12 flex-1 min-w-[320px] max-w-[650px]">
-              <FeelingChart />
+              <Dashboards/>
             </div>
           </div>
         </div>
