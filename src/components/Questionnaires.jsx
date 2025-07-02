@@ -19,13 +19,14 @@ const Questionnaires = () => {
   };
 
   return (
-    <div className="w-full mx-auto mt-10 p-6 bg-white shadow-md rounded-md">
-      <h2 className="text-lg font-semibold mb-4 bg-[#3699FF]/70 p-4 text-white rounded-xl">
+    <div className=" rounded shadow-md  flex flex-col w-full h-[700px] ">
+      {/* <div className="w-full mx-auto mt-10 p-6 bg-white shadow-md rounded-md "> */}
+      <h2 className=" font-semibold mb-4 bg-blue-100 p-3 text-[#3699FF]">
         Answer questions
       </h2>
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form onSubmit={handleSubmit} className="space-y-6 px-12">
         <div>
-          <label className="block font-medium mb-1">
+          <label className="block font-medium mb-1 mt-4">
             Q1: How do you feel today on the scale of 1 to 10?
           </label>
           <input
@@ -37,7 +38,7 @@ const Questionnaires = () => {
             className="w-full border-b border-[#3699FF] p-2 rounded"
           />
         </div>
- <hr className="text-gray-300 mt-12"/>  
+        <hr className="text-gray-300 mt-12" />
         <div>
           <label className="block font-medium mb-1">
             Q2: How many hours of sleep did you get?
@@ -51,7 +52,7 @@ const Questionnaires = () => {
             className="w-full border-b border-[#3699FF] p-2 rounded"
           />
         </div>
-          <hr className="text-gray-300 mt-12"/>
+        <hr className="text-gray-300 mt-12" />
         <div>
           <label className="block font-medium mb-1">
             Q3: How many ounces of water have you had to drink today?
@@ -70,7 +71,7 @@ const Questionnaires = () => {
           type="submit"
           className="bg-[#3699FF]/70 text-white px-4 py-2  hover:bg-[#3699FF]/90 transition flex items-center gap-2"
         >
-          <MdOutlineFileUpload/>
+          <MdOutlineFileUpload />
           Submit Answers
         </button>
       </form>
