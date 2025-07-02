@@ -7,5 +7,6 @@ const SMS = () => {
     </div>
   )
 }
-
+  
 export default SMS
+
