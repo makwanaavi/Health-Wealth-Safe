@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   FaTh,
   FaRegCommentDots,
@@ -12,14 +12,29 @@ import {
 import { FiTablet, FiMenu, FiX } from "react-icons/fi";
 // import HealthCards from "./HealthCards"; // Remove from Navbar
 import { NavLink } from "react-router-dom"; // Use NavLink
+const Loader = React.lazy(() => import("./LoadingScreen"));
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 2000);
+    return () => clearTimeout(timer);
+  }, []);
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
   // Active link style
   const activeClass = "bg-[#0165B5] text-white font-semibold";
+
+  if (loading) {
+    return (
+      <React.Suspense fallback={null}>
+        <Loader />
+      </React.Suspense>
+    );
+  }
 
   return (
     <>
@@ -104,7 +119,7 @@ const Navbar = () => {
               }`
             }
           >
-            <FaFileMedical/>
+            <FaFileMedical />
             <span className="text-sm">Health Records</span>
           </NavLink>
           <NavLink
