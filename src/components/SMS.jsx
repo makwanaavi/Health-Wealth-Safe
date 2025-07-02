@@ -1,13 +1,11 @@
 const SMS = () => {
 
   return (
-      <div className="bg-blue-100 w-full h-[700px] rounded shadow-md  flex flex-col">
-        <div className="p-3 text-[#3699FF] font-semibold">SMS</div>
-        <div className="flex-1 overflow-y-auto p-4 bg-white">
-      
-        </div>
-        <div className="p-3 flex gap-2 items-center bg-white">
-       
+      <div className=" w-full h-[700px] rounded shadow-md  flex flex-col">
+        <div className="p-3 text-[#3699FF] font-semibold bg-blue-100">SMS</div>
+        
+        <div className="flex justify-center items-center h-screen text-gray-500">
+          Not Data Found 
         </div>
       </div>
   );
