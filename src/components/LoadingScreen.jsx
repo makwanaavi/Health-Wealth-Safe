@@ -1,10 +1,7 @@
 const Loader = () => (
-  <div className="min-h-screen flex items-center justify-center bg-white">
-    <div className="relative">
-      <div className="h-16 w-16 rounded-full border-4 border-blue-500 border-t-transparent animate-spin"></div>
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-6 w-6 bg-white rounded-full animate-ping"></div>
-    </div>
+  <div className="flex items-center justify-center h-screen bg-[#3699FF]">
+    <div className="h-16 w-16 rounded-full bg-white animate-pulse-scale transition-transform duration-300"></div>
   </div>
 );
 
-export default Loader ; 
+export default Loader;

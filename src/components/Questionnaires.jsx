@@ -1,11 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const Questionnaires = () => {
-  return (
-    <div>
-      Questionnaires
-    </div>
-  )
-}
+  return <div>Questionnaires</div>;
+};
 
-export default Questionnaires
+export default Questionnaires;

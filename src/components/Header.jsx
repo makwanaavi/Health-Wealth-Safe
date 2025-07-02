@@ -138,13 +138,13 @@ const Header = () => {
             <span className="hidden sm:inline text-[#3699FF]">English</span>
           </div>
           {openDropdown === "language" && (
-            <div className="absolute z-20 mt-2 w-28 bg-[#3699FF] rounded shadow-lg py-2 text-[#3699FF] right-0">
+            <div className="absolute z-20 mt-2 w-28 bg-white rounded shadow-lg py-2 text-black right-0">
               <div className="px-4 py-2 hover:hover:bg-[#3699FF] cursor-pointer">
                 English
               </div>
               <div className="px-4 py-2 hover:hover:bg-[#3699FF] cursor-pointer">
                 Hindi
-              </div>  
+              </div>
             </div>
           )}
         </div>
