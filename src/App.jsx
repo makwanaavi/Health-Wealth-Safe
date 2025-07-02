@@ -4,22 +4,13 @@ import Loader from "./components/LoadingScreen";
 import MainLayout from "./components/MainLayout";
 import SMS from "./components/SMS";
 import Documents from "./components/Documents";
-import Devices from "./components/Devices";
-import VideoCall from "./components/VideoCall";
-import Profile from "./components/Profile";
-import HealthRecords from "./components/HealthRecords";
-import ExamRoom from "./components/ExamRoom";
 
-// Lazy Load Components
 const LoginPage = lazy(() => import("./components/ui/LoginPage"));
 const SignUp = lazy(() => import("./components/ui/SignUp"));
 const Dashboard = lazy(() => import("./components/ui/Dashboard"));
 const Chat = lazy(() => import("./components/Chat"));
 const Questionnaires = lazy(() => import("./components/Questionnaires"));
 
-// ✅ Loader Component
-
-// ✅ LoaderWrapper – Show loader 2s before rendering the actual component
 const WithLoader = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
@@ -36,6 +27,7 @@ function App() {
     <Router>
       <Suspense fallback={<Loader />}>
         <Routes>
+          {/* Auth routes (no MainLayout) */}
           <Route
             path="/"
             element={
@@ -52,6 +44,8 @@ function App() {
               </WithLoader>
             }
           />
+
+          {/* Main app routes (with MainLayout) */}
           <Route path="/" element={<MainLayout />}>
             <Route
               path="dashboard"
@@ -61,7 +55,7 @@ function App() {
                 </WithLoader>
               }
             />
-            <Route
+            <Route  
               path="questionnaires"
               element={
                 <WithLoader>
@@ -77,7 +71,6 @@ function App() {
                 </WithLoader>
               }
             />
-
             <Route
               path="sms"
               element={
@@ -86,7 +79,6 @@ function App() {
                 </WithLoader>
               }
             />
-
             <Route
               path="documents"
               element={
@@ -95,6 +87,7 @@ function App() {
                 </WithLoader>
               }
             />
+            {/* ...other main routes... */}
           </Route>
         </Routes>
       </Suspense>
