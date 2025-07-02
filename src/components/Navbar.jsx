@@ -97,14 +97,14 @@ const Navbar = () => {
             <span className="text-sm">Documents</span>
           </NavLink>
           <NavLink
-            to="/health-records"
+            to="/healthrecords"
             className={({ isActive }) =>
               `flex items-center gap-2 px-4 py-4 my-1 md:my-0 md:mr-4 text-base hover:bg-[#0165B5] transition cursor-pointer ${
                 isActive ? activeClass : ""
               }`
             }
           >
-            <FaFileMedical />
+            <FaFileMedical/>
             <span className="text-sm">Health Records</span>
           </NavLink>
           <NavLink
