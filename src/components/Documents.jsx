@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import { FaUpload } from "react-icons/fa";
+import { FaAngleLeft, FaAngleRight, FaUpload } from "react-icons/fa";
+import { LuArrowLeftToLine, LuArrowRightToLine } from "react-icons/lu";
+import { Rnd } from "react-rnd";
 
 const Documents = () => {
   const [showModal, setShowModal] = useState(false);
@@ -12,13 +14,13 @@ const Documents = () => {
 
   const handleUpload = () => {
     if (selectedFile && fileType) {
-      alert(`📁 Uploaded: ${selectedFile.name} as ${fileType}`);
+      alert(`Uploaded: ${selectedFile.name} as ${fileType}`);
       // Yaha API ya logic lagao file upload ka
       setShowModal(false);
       setSelectedFile(null);
       setFileType("");
     } else {
-      alert("⚠️ Please select a file and file type");
+      alert("Please select a file and file type");
     }
   };
 
@@ -31,8 +33,139 @@ const Documents = () => {
         <FaUpload /> Upload
       </button>
       <div className="min-h-screen bg-[#e1e3eb] p-6">
-        {/* Upload Button */}
+        <div style={{ minHeight: 1200 }}>
+          <Rnd
+            default={{
+              x: 0,
+              y: 0,
+              width: 1000,
+              height: 550,
+            }}
+            className="rounded-lg shadow-md bg-white border border-gray-200"
+            dragHandleClassName="drag-header"
+          >
+            <div className="h-full w-full overflow-hidden flex flex-col">
+              {/* Header */}
+              <div className="bg-blue-50 drag-header text-[#3699FF] p-3 font-medium mb-2 cursor-move">
+                Personal Documents
+              </div>
 
+              {/* Table Head */}
+              <div className="bg-blue-50 p-3 mx-1 text-[#3699FF] font-medium rounded-md mb-2">
+                <ul className="flex items-center justify-between mx-4 gap-4 cursor-pointer">
+                  <li className="text-gray-500 text-sm w-[50px]">S.No.</li>
+                  <li className="text-gray-500 text-sm w-[150px]">File Name</li>
+                  <li className="text-gray-500 text-sm w-[150px]">
+                    Document Type
+                  </li>
+                  <li className="text-gray-500 text-sm w-[150px]">
+                    Uploaded File
+                  </li>
+                  <li className="text-gray-500 text-sm w-[150px]">
+                    Uploaded Date
+                  </li>
+                  <li className="text-gray-500 text-sm w-[80px]">Action</li>
+                </ul>
+              </div>
+              <div className="flex items-center justify-end top-0 gap-2 p-4 text-sm text-gray-600">
+                <span>Items per page:</span>
+                <select className="border-none outline-none text-[#3699FF] underline bg-transparent">
+                  <option>5</option>
+                  <option>10</option>
+                  <option>20</option>
+                </select>
+                <span>0 of 0</span>
+                <button disabled className="text-gray-300">
+                  <LuArrowLeftToLine className="w-5 h-5" />
+                </button>
+                <button disabled className="text-gray-300">
+                  <FaAngleLeft className="w-5 h-5" />
+                </button>
+                <button disabled className="text-gray-300">
+                  <FaAngleRight className="w-5 h-5" />
+                </button>
+                <button disabled className="text-gray-300">
+                  <LuArrowRightToLine className="w-5 h-5" />
+                </button>
+              </div>
+
+              {/* Empty State */}
+              <div className="flex-1 flex items-center justify-center mb-24">
+                <h2 className="text-gray-400 text-lg">No records</h2>
+              </div>
+
+              {/* Pagination */}
+            </div>
+          </Rnd>
+
+          <Rnd
+            default={{
+              x: 0,
+              y: 0,
+              width: 700,
+              height: 550,
+            }}
+            className="rounded-lg shadow-md bg-white border border-gray-200"
+            dragHandleClassName="drag-header"
+          >
+            <div className="h-full w-full overflow-hidden">
+              <div className="bg-blue-50 drag-header text-[#3699FF] p-3 font-medium mb-2 cursor-move">
+                Email Attachments
+              </div>
+              <div className="flex items-center justify-center h-full">
+                <h2 className="text-gray-500 text-lg">No records</h2>
+              </div>
+            </div>
+          </Rnd>
+
+          <Rnd
+            default={{
+              x: 0,
+              y: 0,
+              width: 1000,
+              height: 550,
+            }}
+            className="rounded-lg shadow-md bg-white border border-gray-200"
+            dragHandleClassName="drag-header"
+          >
+            <div className="h-full  w-full overflow-hidden">
+              <div className="bg-blue-50 drag-header text-[#3699FF] p-3 font-medium mb-2 cursor-move">
+                DICOM Files
+              </div>
+              <div className=" bg-blue-50 p-3 mx-1 text-[#3699FF] font-medium rounded-md mb-2">
+                <ul className="flex items-center justify-between mx-4 gap-4 cursor-pointer">
+                  <li className="text-gray-500 text-sm">S.No.</li>
+                  <li className="text-gray-500 text-sm">Study ID </li>
+                  <li className="text-gray-500 text-sm">Series ID</li>
+                  <li className="text-gray-500 text-sm">Body Site</li>
+                  <li className="text-gray-500 text-sm">Uploaded Date</li>
+                  <li className="text-gray-500 text-sm">Modality</li>
+                </ul>
+              </div>
+              <div className="flex items-center justify-end top-0 gap-2 p-4 text-sm text-gray-600">
+                <span>Items per page:</span>
+                <select className="border-none outline-none text-[#3699FF] underline bg-transparent">
+                  <option>5</option>
+                  <option>10</option>
+                  <option>20</option>
+                </select>
+                <span>0 of 0</span>
+                <button disabled className="text-gray-300">
+                  <LuArrowLeftToLine className="w-5 h-5" />
+                </button>
+                <button disabled className="text-gray-300">
+                  <FaAngleLeft className="w-5 h-5" />
+                </button>
+                <button disabled className="text-gray-300">
+                  <FaAngleRight className="w-5 h-5" />
+                </button>
+                <button disabled className="text-gray-300">
+                  <LuArrowRightToLine className="w-5 h-5" />
+                </button>
+              </div>
+            </div>
+          </Rnd>
+        </div>
         {/* Modal */}
         {showModal && (
           <div className="fixed inset-0 bg-black/20 bg-opacity-40 flex items-center justify-center z-50">
@@ -75,7 +208,7 @@ const Documents = () => {
                 >
                   <FaUpload className="inline-block mr-1" />
                   Upload
-                </button>  
+                </button>
               </div>
             </div>
           </div>
