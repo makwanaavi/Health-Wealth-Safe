@@ -117,7 +117,9 @@ const Header = () => {
         {/* Start Call */}
         <button className="flex items-center gap-2 px-6 py-4  bg-[#3699FF]/90 text-white font-medium rounded hover:bg-[#3699FF] transition text-sm">
           <MdAddCall className="h-4.5 w-4.5" />
-          <Link to="/exam-room" className="hidden sm:inline">Start Call</Link>
+          <Link to="/exam-room" className="hidden sm:inline">
+            Start Call
+          </Link>
         </button>
 
         {/* Request Amendment */}
@@ -139,10 +141,10 @@ const Header = () => {
           </div>
           {openDropdown === "language" && (
             <div className="absolute z-20 mt-2 w-28 bg-white rounded shadow-lg py-2 text-black right-0">
-              <div className="px-4 py-2 hover:hover:bg-[#3699FF] cursor-pointer">
+              <div className="px-4 py-2 hover:bg-gray-100 hover:text-[#3699FF] cursor-pointer">
                 English
               </div>
-              <div className="px-4 py-2 hover:hover:bg-[#3699FF] cursor-pointer">
+              <div className="px-4 py-2 hover:bg-gray-100 hover:text-[#3699FF]  cursor-pointer">
                 Hindi
               </div>
             </div>
@@ -160,7 +162,7 @@ const Header = () => {
             }
           />
           {openDropdown === "notification" && (
-            <div className="absolute z-20 mt-2 w-64 bg-white rounded shadow-lg py-4 text-gray-800 right-0 text-center">
+            <div className="absolute z-20 mt-2 w-64 bg-white hover:bg-blue-50 hover:text-[#3699FF] rounded shadow-lg py-4 text-gray-800 right-0 text-center">
               No new notification found!
             </div>
           )}
@@ -176,13 +178,13 @@ const Header = () => {
           />
           {openDropdown === "profile" && (
             <div className="absolute z-20 mt-2 w-56 bg-white rounded shadow-lg py-2 text-gray-800 right-0">
-              <div className="flex items-center px-4 py-2 hover:bg-blue-50 cursor-pointer gap-2">
+              <div className="flex items-center px-4 py-2 hover:bg-blue-50 hover:text-[#3699FF] cursor-pointer gap-2">
                 <span className="text-lg">
                   <MdLockReset />
                 </span>
                 Reset Password
               </div>
-              <div className="flex items-center px-4 py-2 hover:bg-blue-50 cursor-pointer gap-2">
+              <div className="flex items-center px-4 py-2 hover:bg-blue-50 hover:text-[#3699FF] cursor-pointer gap-2">
                 <span className="text-lg">
                   <GrLogout />
                 </span>
