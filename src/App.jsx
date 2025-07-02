@@ -1,15 +1,20 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState, useEffect, Suspense, lazy } from "react";
-import Loader from "./components/LoadingScreen";
-import MainLayout from "./components/MainLayout";
-import SMS from "./components/SMS";
-import Documents from "./components/Documents";
 
+const MainLayout = lazy(() => import("./components/MainLayout"));
 const LoginPage = lazy(() => import("./components/ui/LoginPage"));
 const SignUp = lazy(() => import("./components/ui/SignUp"));
 const Dashboard = lazy(() => import("./components/ui/Dashboard"));
 const Chat = lazy(() => import("./components/Chat"));
 const Questionnaires = lazy(() => import("./components/Questionnaires"));
+const Documents = lazy(() => import("./components/Documents"));
+const HealthRecords = lazy(() => import("./components/HealthRecords"));
+const ExamRoom = lazy(() => import("./components/ExamRoom"));
+const Profile = lazy(() => import("./components/Profile"));
+const VideoCall = lazy(() => import("./components/VideoCall"));
+const Devices = lazy(() => import("./components/Devices"));
+const SMS = lazy(() => import("./components/SMS"));
+const Loader = lazy(() => import("./components/LoadingScreen"));
 
 const WithLoader = ({ children }) => {
   const [loading, setLoading] = useState(true);
@@ -55,7 +60,7 @@ function App() {
                 </WithLoader>
               }
             />
-            <Route  
+            <Route
               path="questionnaires"
               element={
                 <WithLoader>
@@ -87,7 +92,46 @@ function App() {
                 </WithLoader>
               }
             />
-            {/* ...other main routes... */}
+            <Route
+              path="healthrecords"
+              element={
+                <WithLoader>
+                  <HealthRecords />
+                </WithLoader>
+              }
+            />
+            <Route
+              path="devices"
+              element={
+                <WithLoader>
+                  <Devices />
+                </WithLoader>
+              }
+            />
+            <Route
+              path="video-call"
+              element={
+                <WithLoader>
+                  <VideoCall />
+                </WithLoader>
+              }
+            />
+            <Route
+              path="profile"
+              element={
+                <WithLoader>
+                  <Profile />
+                </WithLoader>
+              }
+            />
+            <Route
+              path="exam-room"
+              element={
+                <WithLoader>
+                  <ExamRoom />
+                </WithLoader>
+              }
+            />
           </Route>
         </Routes>
       </Suspense>

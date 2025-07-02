@@ -8,12 +8,12 @@ const Dashboard = () => {
       <main>
         <div>
           <div
-            className="relative bg-blue-100 p-12 flex flex-wrap gap-6 mt-6 px-4 overflow-hidden"
+            className="relative bg-blue-100 flex flex-wrap overflow-hidden"
             style={{
               alignItems: "flex-start",
             }}
           >
-            <div className="relative m-12 flex-1 min-w-[320px] max-w-[650px]">
+            <div className="relative   flex-1 min-w-[320px] max-w-[650px]">
               <Dashboards />
             </div>
           </div>
