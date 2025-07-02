@@ -117,7 +117,7 @@ const Header = () => {
         {/* Start Call */}
         <button className="flex items-center gap-2 px-6 py-4  bg-[#3699FF]/90 text-white font-medium rounded hover:bg-[#3699FF] transition text-sm">
           <MdAddCall className="h-4.5 w-4.5" />
-          <span className="hidden sm:inline">Start Call</span>
+          <Link to="/exam-room" className="hidden sm:inline">Start Call</Link>
         </button>
 
         {/* Request Amendment */}
