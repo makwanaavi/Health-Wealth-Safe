@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 import { Link, useNavigate } from "react-router-dom";
-import Loader from "./LoadingScreen";
 
 const LoginForm = ({ t }) => {
   const [showPassword, setShowPassword] = useState(false);
@@ -9,7 +8,7 @@ const LoginForm = ({ t }) => {
   const [password, setPassword] = useState("");
   const [showAlert, setShowAlert] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [error, setError] = useState(""); 
   const navigate = useNavigate();
   const canLogin = username && password;
 
@@ -33,6 +32,8 @@ const LoginForm = ({ t }) => {
             "token",
             (data.data && data.data.token) || data.token || ""
           );
+          // Set persistent login flag
+          localStorage.setItem("isLoggedIn", "true");
           // Extract user info from API response (data.data)
           const userData = data.data || data.user || data;
           localStorage.setItem(

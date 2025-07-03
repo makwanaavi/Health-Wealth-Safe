@@ -6,7 +6,7 @@ import { BrowserRouter } from "react-router-dom";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <BrowserRouter basename="/Health-Wealth-Safe">
+    <BrowserRouter >
       <App />
     </BrowserRouter>
   </StrictMode>

@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { translations } from "../translations";
 import LeftBanner from "../LeftBanner";
 import LanguageSelector from "../LanguageSelector";
@@ -9,6 +10,13 @@ const LoginPage = () => {
   const [language, setLanguage] = useState("en");
   const t = translations[language];
   const [showLoader] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (localStorage.getItem("isLoggedIn") === "true") {
+      navigate("/dashboard");
+    }
+  }, [navigate]);
 
   if (showLoader) return <Loader />;
   return (
