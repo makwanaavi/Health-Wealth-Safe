@@ -3,6 +3,7 @@ import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
+  base: "/Health-Wealth-Safe/",
   theme: {
     extend: {
       keyframes: {
@@ -18,5 +19,4 @@ export default defineConfig({
     },
   },
   plugins: [tailwindcss(), react()],
-  base: "/",
 });

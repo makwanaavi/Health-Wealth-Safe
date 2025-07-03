@@ -38,7 +38,6 @@ const Dashboards = () => {
           className="rounded-lg shadow-md bg-white border border-gray-200"
           dragAxis="both"
           style={{ zIndex: 10 }}
-          disableDragging={false}
         >
           <div className="h-full  w-full p-4 overflow-hidden">
             {/* Header - draggable */}
@@ -88,7 +87,6 @@ const Dashboards = () => {
           className="rounded-lg shadow-md bg-white border border-gray-200"
           dragAxis="both"
           style={{ zIndex: 10 }}
-          disableDragging={false}
         >
           <div className="h-full w-full p-4 sm:block">
             {/* Header - draggable */}
@@ -138,7 +136,6 @@ const Dashboards = () => {
           className="rounded-lg shadow-md bg-white border border-gray-200"
           dragAxis="both"
           style={{ zIndex: 10 }}
-          disableDragging={false}
         >
           <div className="h-full w-full p-4 overflow-hidden">
             {/* Header - draggable */}

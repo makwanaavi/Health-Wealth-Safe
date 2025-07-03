@@ -9,7 +9,7 @@ function MainLayout() {
       <Header />
       <Navbar />
       <div className="p-4">
-        <Outlet />
+        <Outlet/>
       </div>
     </div>
   );

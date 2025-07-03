@@ -91,8 +91,8 @@ const ExamRoom = () => {
         </AnimatePresence>
 
         {/* Center Content */}
-        <main className="flex-1 flex items-center justify-center px-4">
-          <p className="text-gray-600 text-lg text-center">
+        <main className="flex-1 flex items-center justify-center px-4 ">
+          <p className= " text-gray-600 text-lg text-center ">
             You haven't join any room please join room to start video call.
           </p>
         </main>
@@ -174,7 +174,7 @@ const ExamRoom = () => {
       </div>
 
       {/* Footer */}
-      <footer className="bg-[#e7e7e7] py-3 text-sm text-center text-black">
+      <footer className="bg-[#e7e7e7] py-3 text-sm  text-center text-black">
         Having trouble with video call? Call us at <a>+1 (877) 581-8810</a>{" "}
         (Available 24/7)
       </footer>
