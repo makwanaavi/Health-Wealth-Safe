@@ -6,6 +6,7 @@ import { IoMdMail } from "react-icons/io";
 import { GrLogout } from "react-icons/gr";
 import { Link } from "react-router-dom";
 import RequestForm from "./RequestForm";
+import ResetPassword from "./ResetPassword"; // Add this import
 
 const Header = () => {
   // Fetch user data from localStorage (set by Login or SignUp)
@@ -78,6 +79,9 @@ const Header = () => {
 
   // Modal state for RequestForm
   const [showRequestForm, setShowRequestForm] = useState(false);
+
+  // Modal state for ResetPassword
+  const [showResetPassword, setShowResetPassword] = useState(false);
 
   return (
     <div className="flex flex-col md:flex-row md:items-center justify-between bg-white p-4 shadow-md gap-4 md:gap-0">
@@ -187,7 +191,13 @@ const Header = () => {
           />
           {openDropdown === "profile" && (
             <div className="absolute z-20 mt-2 w-56 bg-white rounded shadow-lg py-2 text-gray-800 right-0">
-              <div className="flex items-center px-4 py-2 hover:bg-blue-50 hover:text-[#3699FF] cursor-pointer gap-2">
+              <div
+                className="flex items-center px-4 py-2 hover:bg-blue-50 hover:text-[#3699FF] cursor-pointer gap-2"
+                onClick={() => {
+                  setShowResetPassword(true);
+                  setOpenDropdown(null);
+                }}
+              >
                 <span className="text-lg">
                   <MdLockReset />
                 </span>
@@ -213,19 +223,32 @@ const Header = () => {
       {/* Modal for RequestForm */}
       {showRequestForm && (
         <div className="fixed inset-0 z-50 flex h-full items-center  justify-center bg-black/40 bg-opacity-40">
-          
           <div className="relative bg-white rounded shadow-lg px-4  mt-12  py-4 w-full max-w-6xl min-h-[500px] flex flex-col">
-           
             <div className="flex-1 overflow-auto">
-               <button
-              className="absolute top-7  right-7 text-[#3699FF] hover:text-[#3699FF]/60 text-3xl font-bold"
-              onClick={() => setShowRequestForm(false)}
-              aria-label="Close"
+              <button
+                className="absolute top-7  right-7 text-[#3699FF] hover:text-[#3699FF]/60 text-3xl font-bold"
+                onClick={() => setShowRequestForm(false)}
+                aria-label="Close"
+              >
+                &times;
+              </button>
+              <RequestForm />
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Modal for ResetPassword */}
+      {showResetPassword && (
+        <div className="fixed inset-0 z-50 flex  items-center justify-center bg-black/40 bg-opacity-40">
+          <div className="relative bg-white  rounded   mt-12 py-4 w-250 p-4 flex flex-col">
+            <button
+              className="absolute top-7 right-7 text-[#3699FF] hover:text-[#3699FF]/60 text-3xl font-bold"
+              onClick={() => setShowResetPassword(false)}
             >
               &times;
             </button>
-              <RequestForm />
-            </div>
+            <ResetPassword />
           </div>
         </div>
       )}
