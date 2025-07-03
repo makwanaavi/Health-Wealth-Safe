@@ -10,7 +10,7 @@ const fields = [
   "Address",
 ];
 
-const   RequestForm = () => {
+const RequestForm = () => {
   return (
     <div className="bg-white rounded-lg shadow-md max-w-6xl mx-auto">
       <h2 className="text-2xl font-semibold  border border-gray-300 p-4">
@@ -31,9 +31,10 @@ const   RequestForm = () => {
                 <span>{field}</span>
               </label>
             ))}
-          </div>
+          </div> 
         </div>
         {/* Form Fields */}
+        
         <div className="sm:w-3/4 flex-1">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
             <input
@@ -73,7 +74,7 @@ const   RequestForm = () => {
                 <select className="input border border-gray-200 p-4 rounded-sm">
                   <option>Phone Type</option>
                 </select>
-                <select className="input border border-gray-200 p-4 rounded-sm">
+                <select className="input border border-gray-200 text-gray-50-400 p-4 rounded-sm">
                   <option>United States (1)</option>
                 </select>
                 <input
@@ -126,16 +127,17 @@ const   RequestForm = () => {
               <input type="file" className="hidden" id="upload" />
               <label
                 htmlFor="upload"
-                className="cursor-pointer text-blue-600 flex flex-col items-center"
+                className="cursor-pointer text-[#3699FF] flex flex-col items-center"
               >
-                <span className="text-2xl">⬆</span>
-                <span>Upload</span>
+                <span className="text-2xl text-[#3699FF]">⬆</span>
+                <span >Upload</span>
               </label>
             </div>
           </div>
+    
           {/* Submit Button */}
           <div className="text-center">
-            <button className="bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600">
+            <button className="bg-[#3699FF] text-white px-6 py-2 rounded hover:bg-[#3699FF]/90">
               Submit Amendment
             </button>
           </div>
