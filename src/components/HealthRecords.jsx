@@ -1,12 +1,10 @@
-
-
-
 import { LuArrowLeftToLine, LuArrowRightToLine } from "react-icons/lu";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
 import { IoMdAdd, IoMdRefresh } from "react-icons/io";
 import { RxCross2 } from "react-icons/rx";
 import React, { useRef, useState } from "react";
 import { Rnd } from "react-rnd";
+import { motion } from "framer-motion";
 
 const HealthRecords = () => {
   const [card1Position, setCard1Position] = useState({ x: 0, y: 0 });
@@ -26,8 +24,10 @@ const HealthRecords = () => {
   };
 
   const handleCard2DragStop = (e, d) => {
-    const card1Rect = card1Ref.current.resizableElement.current.getBoundingClientRect();
-    const card2Rect = card2Ref.current.resizableElement.current.getBoundingClientRect();
+    const card1Rect =
+      card1Ref.current.resizableElement.current.getBoundingClientRect();
+    const card2Rect =
+      card2Ref.current.resizableElement.current.getBoundingClientRect();
 
     if (isOverlapping(card1Rect, card2Rect)) {
       // Adjust position if overlapping
@@ -38,96 +38,144 @@ const HealthRecords = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#e1e3eb] p-6">
-      <div style={{ minHeight: 1200, position: "relative" }} className="w-full h-full">
+    <motion.div
+      className="min-h-screen bg-[#e1e3eb] p-6"
+      initial={{ opacity: 0, y: 40 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 40 }}
+      transition={{ duration: 0.4, type: "spring" }}
+    >
+      <div
+        style={{ minHeight: 1200, position: "relative" }}
+        className="w-full h-full"
+      >
         {/* Card 1 - Full width & height */}
-        <Rnd
-          ref={card1Ref}
-          size={{ width: "50%", height: "50%" }}
-          position={card1Position}
-          onDragStop={(e, d) => setCard1Position({ x: d.x, y: d.y })}
-          className="rounded-lg shadow-md bg-white border border-gray-200"
-          dragHandleClassName="drag-header"
-          enableResizing={false}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, type: "spring" }}
         >
-          <div className="h-200 w-full overflow-hidden flex flex-col scale-[0.95]">
-            <div className="bg-blue-50 drag-header text-[#3699FF] p-3 font-medium cursor-move">Medications</div>
-            <div className="flex items-center justify-center gap-4 p-4">
-              <input type="text" placeholder="Search" className="w-45 h-10 border border-gray-400 p-2" />
-              <button onClick={() => window.location.reload()} title="Refresh">
-                <IoMdRefresh className="h-5 w-5" />
-              </button>
-              <RxCross2 className="h-5 w-5" />
-              <IoMdAdd className="h-5 w-5" />
+          <Rnd
+            ref={card1Ref}
+            size={{ width: "50%", height: "50%" }}
+            position={card1Position}
+            onDragStop={(e, d) => setCard1Position({ x: d.x, y: d.y })}
+            className="rounded-lg shadow-md bg-white border border-gray-200"
+            dragHandleClassName="drag-header"
+            enableResizing={false}
+          >
+            <div className="h-200 w-full overflow-hidden flex flex-col scale-[0.95]">
+              <div className="bg-blue-50 drag-header text-[#3699FF] p-3 font-medium cursor-move">
+                Medications
+              </div>
+              <div className="flex items-center justify-center gap-4 p-4">
+                <input
+                  type="text"
+                  placeholder="Search"
+                  className="w-45 h-10 border border-gray-400 p-2"
+                />
+                <button
+                  onClick={() => window.location.reload()}
+                  title="Refresh"
+                >
+                  <IoMdRefresh className="h-5 w-5" />
+                </button>
+                <RxCross2 className="h-5 w-5" />
+                <IoMdAdd className="h-5 w-5" />
+              </div>
+              <div className="bg-blue-50 p-3 mx-1 text-[#3699FF] font-medium rounded-md mb-2">
+                <ul className="flex items-center justify-between mx-4 gap-4">
+                  <li className="text-gray-500 text-sm w-[50px]">S.No.</li>
+                  <li className="text-gray-500 text-sm w-[150px]">File Name</li>
+                  <li className="text-gray-500 text-sm w-[150px]">
+                    Document Type
+                  </li>
+                  <li className="text-gray-500 text-sm w-[150px]">
+                    Uploaded File
+                  </li>
+                  <li className="text-gray-500 text-sm w-[150px]">
+                    Uploaded Date
+                  </li>
+                  <li className="text-gray-500 text-sm w-[80px]">Action</li>
+                </ul>
+              </div>
+              <div className="flex items-center justify-end gap-2 p-4 text-sm text-gray-600">
+                <span>Items per page:</span>
+                <select className="text-[#3699FF] underline bg-transparent">
+                  <option>5</option>
+                  <option>10</option>
+                  <option>20</option>
+                </select>
+                <span>0 of 0</span>
+                <LuArrowLeftToLine className="w-5 h-5 text-gray-300" />
+                <FaAngleLeft className="w-5 h-5 text-gray-300" />
+                <FaAngleRight className="w-5 h-5 text-gray-300" />
+                <LuArrowRightToLine className="w-5 h-5 text-gray-300" />
+              </div>
+              <div className="flex-1 flex items-center justify-center mb-24">
+                <h2 className="text-gray-400 text-lg">No records</h2>
+              </div>
             </div>
-            <div className="bg-blue-50 p-3 mx-1 text-[#3699FF] font-medium rounded-md mb-2">
-              <ul className="flex items-center justify-between mx-4 gap-4">
-                <li className="text-gray-500 text-sm w-[50px]">S.No.</li>
-                <li className="text-gray-500 text-sm w-[150px]">File Name</li>
-                <li className="text-gray-500 text-sm w-[150px]">Document Type</li>
-                <li className="text-gray-500 text-sm w-[150px]">Uploaded File</li>
-                <li className="text-gray-500 text-sm w-[150px]">Uploaded Date</li>
-                <li className="text-gray-500 text-sm w-[80px]">Action</li>
-              </ul>
-            </div>
-            <div className="flex items-center justify-end gap-2 p-4 text-sm text-gray-600">
-              <span>Items per page:</span>
-              <select className="text-[#3699FF] underline bg-transparent">
-                <option>5</option>
-                <option>10</option>
-                <option>20</option>
-              </select>
-              <span>0 of 0</span>
-              <LuArrowLeftToLine className="w-5 h-5 text-gray-300" />
-              <FaAngleLeft className="w-5 h-5 text-gray-300" />
-              <FaAngleRight className="w-5 h-5 text-gray-300" />
-              <LuArrowRightToLine className="w-5 h-5 text-gray-300" />
-            </div>
-            <div className="flex-1 flex items-center justify-center mb-24">
-              <h2 className="text-gray-400 text-lg">No records</h2>
-            </div>
-          </div>
-        </Rnd>
+          </Rnd>
+        </motion.div>
 
         {/* Card 2 - Drag & auto position fix */}
-        <Rnd
-          ref={card2Ref}
-          size={{ width: "50%", height: "50%" }}
-          position={card2Position}
-          onDragStop={handleCard2DragStop}
-          className="rounded-lg shadow-md bg-white border border-gray-200 absolute"
-          dragHandleClassName="drag-header"
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, type: "spring", delay: 0.1 }}
         >
-          <div className="h-full w-full overflow-hidden flex flex-col">
-            <div className="bg-blue-50 drag-header text-[#3699FF] p-3 font-medium cursor-move">Procedures</div>
-            <div className="flex items-center justify-center gap-4 p-4">
-              <input type="text" placeholder="Search" className="w-45 h-10 border border-gray-400 p-2" />
-              <button onClick={() => window.location.reload()} title="Refresh">
-                <IoMdRefresh className="h-5 w-5" />
-              </button>
-              <RxCross2 className="h-5 w-5" />
-              <IoMdAdd className="h-5 w-5" />
+          <Rnd
+            ref={card2Ref}
+            size={{ width: "50%", height: "50%" }}
+            position={card2Position}
+            onDragStop={handleCard2DragStop}
+            className="rounded-lg shadow-md bg-white border border-gray-200 absolute"
+            dragHandleClassName="drag-header"
+          >
+            <div className="h-full w-full overflow-hidden flex flex-col">
+              <div className="bg-blue-50 drag-header text-[#3699FF] p-3 font-medium cursor-move">
+                Procedures
+              </div>
+              <div className="flex items-center justify-center gap-4 p-4">
+                <input
+                  type="text"
+                  placeholder="Search"
+                  className="w-45 h-10 border border-gray-400 p-2"
+                />
+                <button
+                  onClick={() => window.location.reload()}
+                  title="Refresh"
+                >
+                  <IoMdRefresh className="h-5 w-5" />
+                </button>
+                <RxCross2 className="h-5 w-5" />
+                <IoMdAdd className="h-5 w-5" />
+              </div>
+              <div className="bg-blue-50 p-3 mx-1 text-[#3699FF] font-medium rounded-md mb-2">
+                <ul className="flex items-center justify-between mx-4 gap-4">
+                  <li className="text-gray-500 text-sm w-[50px]">S.No.</li>
+                  <li className="text-gray-500 text-sm w-[150px]">File Name</li>
+                  <li className="text-gray-500 text-sm w-[150px]">
+                    Document Type
+                  </li>
+                  <li className="text-gray-500 text-sm w-[150px]">
+                    Uploaded File
+                  </li>
+                  <li className="text-gray-500 text-sm w-[150px]">
+                    Uploaded Date
+                  </li>
+                  <li className="text-gray-500 text-sm w-[80px]">Action</li>
+                </ul>
+              </div>
+              <div className="flex-1 flex items-center justify-center mb-24">
+                <h2 className="text-gray-400 text-lg">No records</h2>
+              </div>
             </div>
-            <div className="bg-blue-50 p-3 mx-1 text-[#3699FF] font-medium rounded-md mb-2">
-              <ul className="flex items-center justify-between mx-4 gap-4">
-                <li className="text-gray-500 text-sm w-[50px]">S.No.</li>
-                <li className="text-gray-500 text-sm w-[150px]">File Name</li>
-                <li className="text-gray-500 text-sm w-[150px]">Document Type</li>
-                <li className="text-gray-500 text-sm w-[150px]">Uploaded File</li>
-                <li className="text-gray-500 text-sm w-[150px]">Uploaded Date</li>
-                <li className="text-gray-500 text-sm w-[80px]">Action</li>
-              </ul>
-            </div>
-            <div className="flex-1 flex items-center justify-center mb-24">
-              <h2 className="text-gray-400 text-lg">No records</h2>
-            </div>
-          </div>
-        </Rnd>
-
-        
-        
+          </Rnd>
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
