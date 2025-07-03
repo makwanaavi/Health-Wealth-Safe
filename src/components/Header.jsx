@@ -184,11 +184,17 @@ const Header = () => {
                 </span>
                 Reset Password
               </div>
-              <div className="flex items-center px-4 py-2 hover:bg-blue-50 hover:text-[#3699FF] cursor-pointer gap-2">
+              <div
+                className="flex items-center px-4 py-2 hover:bg-blue-50 hover:text-[#3699FF] cursor-pointer gap-2"
+                onClick={() => {
+                  localStorage.clear();
+                  window.location.href = "/";
+                }}
+              >
                 <span className="text-lg">
                   <GrLogout />
                 </span>
-                <Link to="/">Logout</Link>
+                Logout
               </div>
             </div>
           )}
