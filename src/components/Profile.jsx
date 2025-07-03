@@ -1,13 +1,25 @@
 import React from "react";
 import { FiUpload } from "react-icons/fi";
+import { motion } from "framer-motion";
 
 const Profile = () => {
   return (
-    <div className="bg-gray-100 min-h-screen py-4 px-2">
+    <motion.div
+      className="bg-gray-100 min-h-screen py-4 px-2"
+      initial={{ opacity: 0, y: 40 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 40 }}
+      transition={{ duration: 0.4, type: "spring" }}
+    >
       {/* Responsive container for all cards */}
       <div className="flex flex-col gap-2 md:grid md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-2 md:gap-3 w-full max-w-full overflow-x-auto">
         {/* General Information */}
-        <div className="bg-white shadow-md rounded-lg max-w-full w-full min-w-[320px]">
+        <motion.div
+          className="bg-white shadow-md rounded-lg max-w-full w-full min-w-[320px]"
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, type: "spring" }}
+        >
           <h2 className="text-[#37AFFF] text-lg font-semibold p-3 mb-4 bg-[#E1F0FF]">
             General Information
           </h2>
@@ -153,10 +165,15 @@ const Profile = () => {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Medical Information */}
-        <div className="shadow-md rounded-lg bg-white relative max-w-full w-full min-w-[320px]">
+        <motion.div
+          className="shadow-md rounded-lg bg-white relative max-w-full w-full min-w-[320px]"
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, type: "spring", delay: 0.05 }}
+        >
           <h2 className="text-[#37AFFF] text-lg font-semibold p-3 mb-4 bg-[#E1F0FF]">
             Medical Information
           </h2>
@@ -209,8 +226,13 @@ const Profile = () => {
           <button className="absolute top-4 right-4 border border-blue-500 text-blue-600 px-3 py-1 text-sm rounded hover:bg-blue-50 transition">
             Edit
           </button>
-        </div>
-        <div className="shadow-md rounded-lg bg-white relative max-w-full w-full min-w-[320px]">
+        </motion.div>
+        <motion.div
+          className="shadow-md rounded-lg bg-white relative max-w-full w-full min-w-[320px]"
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, type: "spring", delay: 0.1 }}
+        >
           <h2 className="text-[#37AFFF] text-lg font-semibold p-3 bg-[#E1F0FF]">
             Patient Representative
           </h2>
@@ -265,8 +287,13 @@ const Profile = () => {
               <div>--</div>
             </div>
           </div>
-        </div>
-        <div className="shadow-md rounded-lg bg-white relative max-w-full w-full min-w-[320px]">
+        </motion.div>
+        <motion.div
+          className="shadow-md rounded-lg bg-white relative max-w-full w-full min-w-[320px]"
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, type: "spring", delay: 0.15 }}
+        >
           <h2 className="text-[#37AFFF] text-lg font-semibold p-3 bg-[#E1F0FF]">
             Patient Employment
           </h2>
@@ -309,7 +336,7 @@ const Profile = () => {
               <div>--</div>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         <div className="shadow-md rounded-lg bg-white relative max-w-full w-full min-w-[320px]">
           <h2 className="text-[#37AFFF] text-lg font-semibold p-3 bg-[#E1F0FF]">
@@ -318,7 +345,7 @@ const Profile = () => {
           <div className="h-20"></div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

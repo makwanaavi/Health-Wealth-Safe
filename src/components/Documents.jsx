@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { FaAngleLeft, FaAngleRight, FaUpload } from "react-icons/fa";
 import { LuArrowLeftToLine, LuArrowRightToLine } from "react-icons/lu";
 import { Rnd } from "react-rnd";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Documents = () => {
   const [showModal, setShowModal] = useState(false);
@@ -26,13 +27,21 @@ const Documents = () => {
 
   return (
     <>
-      <button
+      <motion.button
         className="flex items-center gap-2 px-4 py-2 mb-6 border border-blue-400 text-blue-500 rounded hover:bg-blue-100"
         onClick={() => setShowModal(true)}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.98 }}
       >
         <FaUpload /> Upload
-      </button>
-      <div className="min-h-screen bg-[#e1e3eb] p-6">
+      </motion.button>
+      <motion.div
+        className="min-h-screen bg-[#e1e3eb] p-6"
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: 40 }}
+        transition={{ duration: 0.4, type: "spring" }}
+      >
         <div style={{ minHeight: 1200 }}>
           <Rnd
             default={{
@@ -167,53 +176,67 @@ const Documents = () => {
           </Rnd>
         </div>
         {/* Modal */}
-        {showModal && (
-          <div className="fixed inset-0 bg-black/20 bg-opacity-40 flex items-center justify-center z-50">
-            <div className="bg-white w-full max-w-sm rounded shadow-lg p-6">
-              <h2 className="text-lg font-medium mb-4">Upload Files</h2>
-
-              {/* File Drop Area */}
-              <label className="block border border-dashed border-gray-300 p-6 text-center cursor-pointer mb-4">
-                <input
-                  type="file"
-                  className="hidden"
-                  onChange={handleFileChange}
-                />
-                {selectedFile ? selectedFile.name : "Browse a file"}
-              </label>
-
-              {/* File Type Dropdown */}
-              <select
-                className="w-full border border-gray-300 rounded px-3 py-2 mb-4"
-                value={fileType}
-                onChange={(e) => setFileType(e.target.value)}
+        <AnimatePresence>
+          {showModal && (
+            <motion.div
+              className="fixed inset-0 bg-black/20 bg-opacity-40 flex items-center justify-center z-50"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+            >
+              <motion.div
+                className="bg-white w-full max-w-sm rounded shadow-lg p-6"
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.8, opacity: 0 }}
+                transition={{ duration: 0.2 }}
               >
-                <option value="">Select File Type</option>
-                <option value="Personal Document">Personal Document</option>
-                <option value="Email Attachment">Email Attachment</option>
-                <option value="DICOM File">DICOM File</option>
-              </select>
+                <h2 className="text-lg font-medium mb-4">Upload Files</h2>
 
-              {/* Buttons */}
-              <div className="flex justify-end gap-2">
-                <button
-                  className="px-4 py-2 bg-gray-200 text-gray-700 rounded"
-                  onClick={() => setShowModal(false)}
+                {/* File Drop Area */}
+                <label className="block border border-dashed border-gray-300 p-6 text-center cursor-pointer mb-4">
+                  <input
+                    type="file"
+                    className="hidden"
+                    onChange={handleFileChange}
+                  />
+                  {selectedFile ? selectedFile.name : "Browse a file"}
+                </label>
+
+                {/* File Type Dropdown */}
+                <select
+                  className="w-full border border-gray-300 rounded px-3 py-2 mb-4"
+                  value={fileType}
+                  onChange={(e) => setFileType(e.target.value)}
                 >
-                  Close
-                </button>
-                <button
-                  className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-                  onClick={handleUpload}
-                >
-                  <FaUpload className="inline-block mr-1" />
-                  Upload
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
-      </div>
+                  <option value="">Select File Type</option>
+                  <option value="Personal Document">Personal Document</option>
+                  <option value="Email Attachment">Email Attachment</option>
+                  <option value="DICOM File">DICOM File</option>
+                </select>
+
+                {/* Buttons */}
+                <div className="flex justify-end gap-2">
+                  <button
+                    className="px-4 py-2 bg-gray-200 text-gray-700 rounded"
+                    onClick={() => setShowModal(false)}
+                  >
+                    Close
+                  </button>
+                  <button
+                    className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                    onClick={handleUpload}
+                  >
+                    <FaUpload className="inline-block mr-1" />
+                    Upload
+                  </button>
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.div>
     </>
   );
 };

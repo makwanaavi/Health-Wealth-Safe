@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { MdOutlineFileUpload } from "react-icons/md";
+import { motion } from "framer-motion";
 
 const Questionnaires = () => {
   const [form, setForm] = useState({
@@ -19,8 +20,13 @@ const Questionnaires = () => {
   };
 
   return (
-    <div className=" rounded shadow-md  flex flex-col w-full h-[700px] ">
-      {/* <div className="w-full mx-auto mt-10 p-6 bg-white shadow-md rounded-md "> */}
+    <motion.div
+      className=" rounded shadow-md  flex flex-col w-full h-[700px] "
+      initial={{ opacity: 0, y: 40 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 40 }}
+      transition={{ duration: 0.4, type: "spring" }}
+    >
       <h2 className=" font-semibold mb-4 bg-blue-100 p-3 text-[#3699FF]">
         Answer questions
       </h2>
@@ -75,7 +81,7 @@ const Questionnaires = () => {
           Submit Answers
         </button>
       </form>
-    </div>
+    </motion.div>
   );
 };
 
