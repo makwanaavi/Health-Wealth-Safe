@@ -117,9 +117,8 @@ const HealthRecords = () => {
               </div>
             </div>
           </Rnd>
-        </motion.div>
-
-        {/* Card 2 - Drag & auto position fix */}
+        </motion.div> 
+    
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
