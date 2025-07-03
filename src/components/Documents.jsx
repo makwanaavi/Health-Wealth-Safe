@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import { FaAngleLeft, FaAngleRight, FaUpload } from "react-icons/fa";
 import { LuArrowLeftToLine, LuArrowRightToLine } from "react-icons/lu";
@@ -42,7 +43,7 @@ const Documents = () => {
         exit={{ opacity: 0, y: 40 }}
         transition={{ duration: 0.4, type: "spring" }}
       >
-        <div style={{ minHeight: 1200 }}>
+        <div style={{ minHeight: 1200, position: "relative", height: 1200 }}>
           <Rnd
             default={{
               x: 0,
@@ -50,6 +51,7 @@ const Documents = () => {
               width: 1000,
               height: 550,
             }}
+            bounds="parent"
             className="rounded-lg shadow-md bg-white border border-gray-200"
             dragHandleClassName="drag-header"
           >
@@ -114,6 +116,7 @@ const Documents = () => {
               width: 700,
               height: 550,
             }}
+            bounds="parent"
             className="rounded-lg shadow-md bg-white border border-gray-200"
             dragHandleClassName="drag-header"
           >
@@ -134,6 +137,7 @@ const Documents = () => {
               width: 1000,
               height: 550,
             }}
+            bounds="parent"
             className="rounded-lg shadow-md bg-white border border-gray-200"
             dragHandleClassName="drag-header"
           >

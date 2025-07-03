@@ -81,7 +81,7 @@ const SignUp = () => {
     }
     // Validate password match
     if (name === "confirmPassword" || name === "password") {
-      setErrors({
+      setErrors({ 
         ...errors,
         passwordMatch:
           name === "confirmPassword"
@@ -124,7 +124,7 @@ const SignUp = () => {
     setApiErrors((e) => ({ ...e, email: "" }));
     try {
       const res = await fetch(
-        `https://api.healthwealthsafe.net/api/checkEmail?email=${encodeURIComponent(
+        `https://api.healthwealthsafe.net/api/checkEmail?email=${(
           email
         )}&userId=`
       );
@@ -143,7 +143,7 @@ const SignUp = () => {
     setApiErrors((e) => ({ ...e, mobile: "" }));
     try {
       const res = await fetch(
-        `https://api.healthwealthsafe.net/api/checkPhone?phone=${encodeURIComponent(
+        `https://api.healthwealthsafe.net/api/checkPhone?phone=${(
           phone
         )}&userId=`
       );
@@ -226,7 +226,7 @@ const SignUp = () => {
       // Check for existing email, phone, or username before submitting
       // Check email
       const emailRes = await fetch(
-        `https://api.healthwealthsafe.net/api/checkEmail?email=${encodeURIComponent(
+        `https://api.healthwealthsafe.net/api/checkEmail?email=${(
           formData.email
         )}&userId=`
       );
@@ -239,7 +239,7 @@ const SignUp = () => {
       // Check phone
       const phoneNumber = (countryCode + formData.mobile).replace(/\+/g, "");
       const phoneRes = await fetch(
-        `https://api.healthwealthsafe.net/api/checkPhone?phone=${encodeURIComponent(
+        `https://api.healthwealthsafe.net/api/checkPhone?phone=${(
           phoneNumber
         )}&userId=`
       );
