@@ -4,6 +4,7 @@ import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
   base: "/Health-Wealth-Safe/",
+  plugins: [react(), tailwindcss()],
   theme: {
     extend: {
       keyframes: {
@@ -18,5 +19,4 @@ export default defineConfig({
       },
     },
   },
-  plugins: [tailwindcss(), react()],
 });
