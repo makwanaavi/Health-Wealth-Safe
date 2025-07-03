@@ -218,7 +218,7 @@ const Header = () => {
            
             <div className="flex-1 overflow-auto">
                <button
-              className="absolute top-7  right-7 text-gray-500 hover:text-gray-700 text-3xl font-bold"
+              className="absolute top-7  right-7 text-[#3699FF] hover:text-[#3699FF]/60 text-3xl font-bold"
               onClick={() => setShowRequestForm(false)}
               aria-label="Close"
             >
