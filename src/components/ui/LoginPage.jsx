@@ -39,6 +39,7 @@ const LoginPage = () => {
               {t.signIn}
             </h2>
             <LoginForm t={t} />
+            
           </div>
         </div>
       </div>
