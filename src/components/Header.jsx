@@ -5,6 +5,7 @@ import { useEffect, useState, useRef } from "react";
 import { IoMdMail } from "react-icons/io";
 import { GrLogout } from "react-icons/gr";
 import { Link } from "react-router-dom";
+import RequestForm from "./RequestForm";
 
 const Header = () => {
   // Fetch user data from localStorage (set by Login or SignUp)
@@ -75,6 +76,9 @@ const Header = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  // Modal state for RequestForm
+  const [showRequestForm, setShowRequestForm] = useState(false);
+
   return (
     <div className="flex flex-col md:flex-row md:items-center justify-between bg-white p-4 shadow-md gap-4 md:gap-0">
       {/* Left: User Info */}
@@ -123,9 +127,14 @@ const Header = () => {
         </button>
 
         {/* Request Amendment */}
-        <button className="flex items-center gap-1 px-6 py-4 bg-[#3699FF]/90 text-white font-medium rounded transition hover:bg-[#3699FF] text-sm">
+        <button
+          className="flex items-center gap-1 px-6 py-4 text-white font-medium rounded transition bg-[#3699FF] text-sm"
+          onClick={() => setShowRequestForm(true)}
+        >
           <FiEdit2 />
-          <span className="hidden sm:inline">Request Amendment</span>
+          <span className="hidden sm:inline cursor-pointer">
+            Request Amendment
+          </span>
         </button>
 
         {/* Language Dropdown */}
@@ -200,6 +209,26 @@ const Header = () => {
           )}
         </div>
       </div>
+
+      {/* Modal for RequestForm */}
+      {showRequestForm && (
+        <div className="fixed inset-0 z-50 flex h-full items-center  justify-center bg-black/40 bg-opacity-40">
+          
+          <div className="relative bg-white rounded shadow-lg px-4  mt-12  py-4 w-full max-w-6xl min-h-[500px] flex flex-col">
+           
+            <div className="flex-1 overflow-auto">
+               <button
+              className="absolute top-7  right-7 text-gray-500 hover:text-gray-700 text-3xl font-bold"
+              onClick={() => setShowRequestForm(false)}
+              aria-label="Close"
+            >
+              &times;
+            </button>
+              <RequestForm />
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
