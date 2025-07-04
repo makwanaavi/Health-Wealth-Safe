@@ -103,7 +103,7 @@ const LoginForm = ({ t }) => {
       </div>
       <hr />
       <div className="text-right">
-        <a href="#" className="text-sm text-[#3699FF] hover:underline">
+        <a href="#" className="text-sm text-[#3699FF]">
           {t.forgot}
         </a>
       </div>
@@ -135,7 +135,7 @@ const LoginForm = ({ t }) => {
       <p className="text-sm text-start">
         {t.dontHave}{" "}
         <a href="#" className="text-[#3699FF] hover:underline">
-          {t.register}
+          <Link to={"/sign-up"}>{t.register}</Link>
         </a>
       </p>
       <p className="text-sm text-start text-[#3699FF]">
