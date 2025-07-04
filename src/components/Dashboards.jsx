@@ -21,15 +21,16 @@ const data = [
 
 const Dashboards = () => {
   return (
-    <div style={{ minHeight: 1200 }}>
+    <div style={{ minHeight: 1200, }}>
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, type: "spring" }}
+        style={{position: "relative"}}
       >
         <Rnd
           default={{
-            x: 0,
+            x: 20,
             y: 0,
             width: 1000,
             height: 550,
@@ -75,6 +76,7 @@ const Dashboards = () => {
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, type: "spring", delay: 0.1 }}
+        style={{position: "relative"}}
       >
         <Rnd
           default={{
@@ -86,7 +88,7 @@ const Dashboards = () => {
           dragHandleClassName="drag-header"
           className="rounded-lg shadow-md bg-white border border-gray-200"
           dragAxis="both"
-          style={{ zIndex: 10 }}
+          style={{ zIndex: 10}}
         >
           <div className="h-full w-full p-4 sm:block">
             {/* Header - draggable */}
@@ -124,6 +126,7 @@ const Dashboards = () => {
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, type: "spring", delay: 0.2 }}
+        style={{position: "relative"}}
       >
         <Rnd
           default={{
@@ -137,7 +140,7 @@ const Dashboards = () => {
           dragAxis="both"
           style={{ zIndex: 10 }}
         >
-          <div className="h-full w-full p-4 overflow-hidden">
+          <div className="h-full w-full p-4">
             {/* Header - draggable */}
             <div className="drag-header bg-blue-50 text-blue-600 p-2 font-medium rounded-md mb-2 cursor-move">
               Q3: How do you feel today on the scale of 1 to 10?{" "}

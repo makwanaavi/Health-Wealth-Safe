@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 import { Link, useNavigate } from "react-router-dom";
+import ManageDataModal from "./ManageDataModal"; // <-- import your modal component
 
 const LoginForm = ({ t }) => {
   const [showPassword, setShowPassword] = useState(false);
@@ -8,7 +9,8 @@ const LoginForm = ({ t }) => {
   const [password, setPassword] = useState("");
   const [showAlert, setShowAlert] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(""); 
+  const [error, setError] = useState("");
+  const [showManageDataModal, setShowManageDataModal] = useState(false);
   const navigate = useNavigate();
   const canLogin = username && password;
 
@@ -137,7 +139,15 @@ const LoginForm = ({ t }) => {
         </a>
       </p>
       <p className="text-sm text-start text-[#3699FF]">
-        <a href="#">{t.manageData}</a>
+        <a
+          href="#"
+          onClick={(e) => {
+            e.preventDefault();
+            setShowManageDataModal(true);
+          }}
+        >
+          {t.manageData}
+        </a>
       </p>
       <div className="flex items-center mb-10 text-start">
         <a
@@ -173,7 +183,7 @@ const LoginForm = ({ t }) => {
 
       {/* Alert Popup */}
       {showAlert && (
-        <div className="fixed inset-0 bg-[#0071B3]/80  flex items-center justify-center z-50">
+        <div className="fixed inset-0 bg-[#0071B3]/40  flex items-center justify-center z-50">
           <div className="bg-white p-6 rounded shadow-md  w-150 text-center">
             <p className="text-base text-gray-800" style={{ margin: "12px" }}>
               If you think you or someone you care for is having a medical or
@@ -197,6 +207,10 @@ const LoginForm = ({ t }) => {
             </div>
           </div>
         </div>
+      )}
+
+      {showManageDataModal && (
+        <ManageDataModal onClose={() => setShowManageDataModal(false)} />
       )}
     </form>
   );
